@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+  <head>
+    <!--Meta Information-->
+    <meta charset="utf-8"/>
+    <meta name="author" content="Matthias Green"/>
+    <meta name="description" content="Portofolio website for Matthias Green"/>
+
+    <!--Tab display-->
+    <link rel="icon" type="image/png" sizes="32x32" href="./media/favicon-32x32.png">
+    <title>Matt Portofolio</title>
+
+    <!--Package imports-->
+    <script src="https://ajax.googleapis.com/ajax/libs/threejs/r84/three.min.js"></script>
+    <script src="https://unpkg.com/@glidejs/glide@3.6.0/dist/glide.js" defer></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js" defer></script>
+    <script src="https://www.unpkg.com/mathjs@11.9.1/lib/browser/math.js" defer></script>
+    <!--Stylesheets for imports-->
+    <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide@3.6.0/dist/css/glide.core.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <!--My scripts-->
+    <script type="module" src="./script.js" defer></script>
+    <script src="./perlin.js"></script>
+    <!--For fluid dynamics-->
+    <script src="./fluid/utils.js"></script>
+    <script src="./fluid/physics.js"></script>    
+    <script src="./fluid/letters.js"></script>    
+    <script src="./fluid/sph.js"></script>
+    
+
+    <!--My stylesheets-->
+    <link rel="stylesheet" href="./style.css">
+  </head>
+
+  <body>
+    <div class="root">
+
+      <main>
+
+        <div id="load-screen">
+          <h1>Loading...</h1>
+        </div>
+  
+        <header>
+          <nav>
+            <ul class="nav-list">
+              <li class="nav-item"><img src="../media/Logo_Matt.png" width="32px" height="32px"></li>
+              <li class="nav-item"><span onclick="document.getElementById('section2').scrollIntoView({ behavior: 'smooth'})">Projects</span></li>
+              <li class="nav-item"><span onclick="document.getElementById('hidden-section').scrollIntoView({ behavior: 'smooth'})">About</a></li>
+              <li class="nav-item"><a href="./media/Resume-Matthias-Green.pdf">Resume</a></li>
+              <li class="nav-item"><span onclick="showPopup()">Contact</a></li>
+            </ul>
+          </nav>
+        </header>
+  
+        <div class="popup" id="contact-popup">
+          <img src="./media/close.png" class="contact-close">
+          <div class="contact-container">
+            <div class="contact-box">
+              <img src="./media/email.png">
+              <a href="mailto:matthiasgreen2@gmail.com">matthiasgreen2@gmail.com</a>
+            </div>
+            <div class="contact-box">
+              <img src="./media/linkedin.png">
+              <p>Check out my Linkedin</p>
+            </div>
+            <div class="contact-box">
+              <img src="./media/github.png">
+              <p>Check out my Github</p>
+            </div>
+            <div class="contact-box">
+              <img src="./media/instagram.png">
+              <p>Check out my Instagram</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="background-animation-container" id="d3d">
+          <script type="module" src="./bganimation.js" defer></script> 
+        </div>
+
+        <section id="section1">
+          <div class="title-container"> 
+            <h1>
+              <span class="auto-type"></span>
+            </h1>
+          </div>
+          
+          <h4>Welcome to my portofolio</h4>
+          <div class="arrow" onclick="document.getElementById('section2').scrollIntoView({ behavior: 'smooth'})">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          </button>
+        </section>
+
+        <section id="section2">
+
+          <div class="glide">
+            <div class="glide__track" data-glide-el="track">
+              <ul class="glide__slides">
+
+                <!-- Project 1: fourier drawings -->
+                <li class="glide__slide">
+                  <div class="project-container" id="fourier-container">
+                    <canvas id="fourier-canvas"></canvas>
+                    <svg id="drawingSVG"></svg>
+                  </div>
+
+                  <div class="project-intro" id="fourier-intro">
+                    <div class="project-title">
+                      <span class="type-fourier-title"></span>
+                    </div>
+                    <div class="project-explanation">
+                      <p class="type-fourier-explanation"></p>
+                    </div>
+                    <div class="project-continue" id="fourier-continue">
+                      <p class="type-fourier-continue"></p>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="glide__slide">
+                  <div class="project-container" id="boids-container">
+                    <canvas id="boids-canvas"></canvas>
+                  </div>
+
+                  <div class="project-intro" id="boids-intro">
+                    <div class="project-title">
+                      <span class="type-boids-title"></span>
+                    </div>
+                    <div class="project-explanation">
+                      <p class="type-boids-explanation"></p>
+                    </div>
+                    <div class="project-continue" id="boids-continue">
+                      <p class="type-boids-continue"></p>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li class="glide__slide">
+                  <div class="project-canvas" id="project-canvas-f">
+                    <canvas id="fluid"></canvas>
+                  </div>
+                  <div class="project-explanation">
+                    <h3>Fluid</h3>
+                    <p>Here is my fluid simulation</p>
+                  </div>
+                </li>
+  
+
+                <li class="glide__slide">
+                  <div class="project-canvas">
+                    <iframe src="https://www.bowsandlavender.com/" height="100%" width="100%"></iframe>
+                  </div>
+                  <div class="project-explanation">
+                    <h3>Presse Agrumes</h3>
+                    <p>Here is a preview of my website with Lila</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="glide__arrows" data-glide-el="controls">
+              <div class="glide__arrow glide__arrow--prev" data-glide-dir="<"></div>
+              <div class="glide__arrow glide__arrow--next" data-glide-dir=">"></div> 
+            </div>
+          </div>
+    
+          <div class="arrow" onclick="document.getElementById('hidden-section').scrollIntoView({ behavior: 'smooth'})">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </section>
+
+        <section id="hidden-section"></section>
+
+        <section id="section3">
+          <h2>About me</h2>
+          <div class="container">
+            <p class="about-me">
+              My name is Matthias Green. Born and raised in the south of France, and I am currently staying in Sweden.
+              I'm actively looking for work so don't hesitate to contact me! 
+              I hope you're enjoying my portofolio website as much as I enjoyed making it. 
+              This is my most ambitious website so far, and it was a great opportunity to learn!
+              However a lot of this stuff is still work in progress so contact me if you're having any issues.
+            </p>
+            <picture>
+              <img src="./media/Glacier_Portrait.jpg" alt="An image of myself in front of a glacier">
+            </picture>
+          </div>
+        </section>
+
+      </main>
+
+    </div>
+
+  </body>
+
+</html>
