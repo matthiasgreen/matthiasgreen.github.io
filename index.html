@@ -22,12 +22,12 @@
 
     <!--My scripts-->
     <script type="module" src="./script.js" defer></script>
-    <script src="./perlin.js"></script>
+    <script src="./src/perlin.js"></script>
     <!--For fluid dynamics-->
-    <script src="./fluid/utils.js"></script>
-    <script src="./fluid/physics.js"></script>    
-    <script src="./fluid/letters.js"></script>    
-    <script src="./fluid/sph.js"></script>
+    <script src="./src/fluid/utils.js"></script>
+    <script src="./src/fluid/physics.js"></script>    
+    <script src="./src/fluid/letters.js"></script>    
+    <script src="./src/fluid/sph.js"></script>
     
 
     <!--My stylesheets-->
@@ -78,7 +78,7 @@
         </div>
 
         <div class="background-animation-container" id="d3d">
-          <script type="module" src="./bganimation.js" defer></script> 
+          <script type="module" src="./src/bganimation.js" defer></script> 
         </div>
 
         <section id="section1">
@@ -143,24 +143,58 @@
 
 
                 <li class="glide__slide">
-                  <div class="project-canvas" id="project-canvas-f">
-                    <canvas id="fluid"></canvas>
+                  <div class="project-container" id="fluid-container">
+                    <canvas id="fluid-canvas"></canvas>
                   </div>
-                  <div class="project-explanation">
-                    <h3>Fluid</h3>
-                    <p>Here is my fluid simulation</p>
+
+                  <div class="project-intro" id="fluid-intro">
+                    <div class="project-title">
+                      <span class="type-fluid-title"></span>
+                    </div>
+                    <div class="project-explanation">
+                      <p class="type-fluid-explanation"></p>
+                    </div>
+                    <div class="project-continue" id="fluid-continue">
+                      <p class="type-fluid-continue"></p>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="glide__slide">
+                  <div class="project-container" id="graphics-container">
+                    <iframe id="graphics-iframe"></iframe>
+                  </div>
+
+                  <div class="project-intro" id="graphics-intro">
+                    <div class="project-title">
+                      <span class="type-graphics-title"></span>
+                    </div>
+                    <div class="project-explanation">
+                      <p class="type-graphics-explanation"></p>
+                    </div>
+                    <div class="project-continue" id="graphics-continue">
+                      <p class="type-graphics-continue"></p>
+                    </div>
                   </div>
                 </li>
   
 
                 <li class="glide__slide">
-                  <div class="project-canvas">
-                    <iframe src="https://www.bowsandlavender.com/" height="100%" width="100%"></iframe>
+                  <div class="project-container" id="lila-container">
+
                   </div>
-                  <div class="project-explanation">
-                    <h3>Presse Agrumes</h3>
-                    <p>Here is a preview of my website with Lila</p>
+                  <div class="project-intro" id="lila-intro">
+                    <div class="project-title">
+                      <span class="type-lila-title"></span>
+                    </div>
+                    <div class="project-explanation">
+                      <p class="type-lila-explanation"></p>
+                    </div>
+                    <div class="project-continue" id="lila-continue">
+                      <p class="type-lila-continue"></p>
+                    </div>
                   </div>
+
                 </li>
               </ul>
             </div>

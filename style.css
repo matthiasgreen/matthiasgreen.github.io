@@ -222,20 +222,20 @@ h1 {
 
 .glide__arrow {
     position: absolute;
-    width: 1em;
-    height: 1em;
-    border: 3px solid #32557f;
+    width: 3em;
+    height: 3em;
+    border: 3px solid var(--accent);
     border-left: 0;
     border-top: 0;
 }
 
 .glide__arrow--next {
-    right: 1em;
+    right: 3em;
     transform: rotate(-45deg);
 }
 
 .glide__arrow--prev {
-    left: 1em;
+    left: 3em;
     transform: rotate(135deg);
 }
 
@@ -283,8 +283,12 @@ h1 {
     position: relative;
     bottom: 0;
     bottom: -25%;
+    font-size: large;
     font-family: "Roboto Mono", monospace;
     height: 10%;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 

@@ -77,6 +77,7 @@ export class fourierAnimation {
     this.canvas = document.getElementById("fourier-canvas");
     this.context = this.canvas.getContext("2d");
     this.svg = document.getElementById('drawingSVG');
+    this.pause = false;
     
     //display parameters
     this.unitFact = 10; //amount of grid lines per screen width (units per screen width)
@@ -148,7 +149,7 @@ export class fourierAnimation {
     }
 
     //var image = new SVGSVGElement();
-    var promise = fetch("./fourier.svg") //fetching svg
+    var promise = fetch("./media/fourier.svg") //fetching svg
       .then(response => response.text())
       .then(text => (new DOMParser).parseFromString(text, "image/svg+xml")) //parse to text
       .then(svg => svg.documentElement) //get image from svg
@@ -335,14 +336,17 @@ export class fourierAnimation {
 
   // Main animation loop
   animationLoop() {
-    // Clear the canvas
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    //draw new frame
-    this.drawGrid();
-    this.animateFourier();
-    //this.drawSamples();
-    this.displayDrawing();
+    if (!this.pause){
+      // Clear the canvas
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      //draw new frame
+      this.drawGrid();
+      this.animateFourier();
+      //this.drawSamples();
+      this.displayDrawing();
+    }
 
     // Schedule the next frame
     window.requestAnimationFrame(this.animationLoop.bind(this));
