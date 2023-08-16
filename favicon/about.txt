@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Caprasimo
+- Font Author: Copyright 2023 The Caprasimo Project Authors (https://github.com/docrepair-fonts/caprasimo-fonts).
+- Font Source: http://fonts.gstatic.com/s/caprasimo/v1/esDT31JQOPuXIUGBp72klZUCGpG-GQ.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
