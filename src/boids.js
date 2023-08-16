@@ -106,6 +106,7 @@ class Food {
 
 class Boid {
   constructor() {
+    this.pause = false;
     this.pos = new Vector2(Math.random() * width-margin, Math.random() * height-margin);
     this.speed = new Vector2(Math.random() * 10 - 5, Math.random() * 10 - 5);
     this.prevspeed = this.speed.clone();
@@ -434,36 +435,37 @@ export class boidAnimation {
   }
   
   animationLoop() {
-    // Update each boid
-    for (let prey of preys) {
-      // Update the velocities according to each rule
-      prey.move();
-  
-      // Update the position based on the current velocity
-      prey.updatePosition();
+    if (!this.pause){
+      // Update each boid
+      for (let prey of preys) {
+        // Update the velocities according to each rule
+        prey.move();
+    
+        // Update the position based on the current velocity
+        prey.updatePosition();
+      }
+      for (let pred of preds) {
+        // Update the velocities according to each rule
+        pred.move();
+    
+        // Update the position based on the current velocity
+        pred.updatePosition();
+      }
+    
+      // Clear the canvas and redraw all the boids in their current positions
+      this.ctx.clearRect(0, 0, width, height);
+    
+      this.drawPreyCount(this.ctx);
+      for (let prey of preys) {
+        prey.draw(this.ctx);
+      }
+      for (let pred of preds) {
+        pred.draw(this.ctx);
+      }
+      for (let food of foods) {
+        food.draw(this.ctx);
+      }
     }
-    for (let pred of preds) {
-      // Update the velocities according to each rule
-      pred.move();
-  
-      // Update the position based on the current velocity
-      pred.updatePosition();
-    }
-  
-    // Clear the canvas and redraw all the boids in their current positions
-    this.ctx.clearRect(0, 0, width, height);
-  
-    this.drawPreyCount(this.ctx);
-    for (let prey of preys) {
-      prey.draw(this.ctx);
-    }
-    for (let pred of preds) {
-      pred.draw(this.ctx);
-    }
-    for (let food of foods) {
-      food.draw(this.ctx);
-    }
-  
     // Schedule the next frame
     window.requestAnimationFrame(this.animationLoop.bind(this));
   }

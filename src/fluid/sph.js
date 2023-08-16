@@ -10,6 +10,7 @@ let lettersDropped = true;
 
 class fluidAnimation {
   constructor() {
+    this.pause = false;
     this.initParticles();
     this.sizeCanvas();
     window.addEventListener("mousedown", this.handleMouseDown.bind(this));
@@ -28,73 +29,75 @@ class fluidAnimation {
   }
 
   animationLoop() {
-    maxDensity = 0
-    // Sorts particles into grid of size 2h (O(h)), meaning that any particle looks at adjacent 9 squares to find neighbors: improves performance massively
-    grid = new Array(heightf / cellSize);
-    for (let i = 0; i < grid.length; i++) {
-      grid[i] = new Array(widthf / cellSize);
-      for (let j = 0; j < grid[0].length; j++) {
-        grid[i][j] = [];
-      }
-    }
-  
-    if (!lettersDropped && Date.now() > lastWriteTime + 1000) {
-  
-      for (let pi of newParticles) {
-        pi.creationTime = Date.now();
-        pi.vel = new Vect2(Math.random()*100, Math.random()*100)
-        pi.mass = 2.5;
-        particles.push(pi);
-        for (let i = 1; i <= 3; i++) {
-          let p = new Particle(pi.pos.x+h*i/2, pi.pos.y+Math.random()+h*i/2)
-          p.vel = new Vect2(Math.random()*10, Math.random()*10)
-          particles.push(p);
+
+    if (!this.pause){
+      maxDensity = 0
+      // Sorts particles into grid of size 2h (O(h)), meaning that any particle looks at adjacent 9 squares to find neighbors: improves performance massively
+      grid = new Array(heightf / cellSize);
+      for (let i = 0; i < grid.length; i++) {
+        grid[i] = new Array(widthf / cellSize);
+        for (let j = 0; j < grid[0].length; j++) {
+          grid[i][j] = [];
         }
       }
-      newParticles = [];
-      lettersDropped = true;
-      startPos = new Vect2(50, 50);
+    
+      if (!lettersDropped && Date.now() > lastWriteTime + 1000) {
+    
+        for (let pi of newParticles) {
+          pi.creationTime = Date.now();
+          pi.vel = new Vect2(Math.random()*100, Math.random()*100)
+          pi.mass = 2.5;
+          particles.push(pi);
+          for (let i = 1; i <= 3; i++) {
+            let p = new Particle(pi.pos.x+h*i/2, pi.pos.y+Math.random()+h*i/2)
+            p.vel = new Vect2(Math.random()*10, Math.random()*10)
+            particles.push(p);
+          }
+        }
+        newParticles = [];
+        lettersDropped = true;
+        startPos = new Vect2(50, 50);
+      }
+    
+      for (let pi of particles) {
+        pi.sortIntoGrid();
+      }
+      for (let pi of newParticles) {
+        pi.sortIntoGrid();
+      }
+    
+      for (let pi of particles) { // O(n)
+        pi.updateDensityPressure();
+      }
+    
+      for (let pi of particles) { //O(n)
+        pi.updateForces(); //O(n**2)
+      }
+    
+      for (let pi of particles) { //O(n)
+        //pi.leapfrog(); //O(1)
+        pi.integrate();
+      }
+    
+      for (let pi of particles) { //O(n)
+        pi.stayWithinBounds(); //O(1)
+      }
+    
+      evaporate();
+    
+      // Clear the canvas and redraw all the fluid
+      const ctx = document.getElementById("fluid-canvas").getContext("2d");
+      ctx.clearRect(0, 0, widthf, heightf);
+    
+      for (let pi of particles) {
+        //pi.draw(ctx);
+      }
+      for (let pi of newParticles) {
+        //pi.draw(ctx);
+      }
+      //drawgrid(ctx);
+      drawASCII(ctx);
     }
-  
-    for (let pi of particles) {
-      pi.sortIntoGrid();
-    }
-    for (let pi of newParticles) {
-      pi.sortIntoGrid();
-    }
-  
-    for (let pi of particles) { // O(n)
-      pi.updateDensityPressure();
-    }
-  
-    for (let pi of particles) { //O(n)
-      pi.updateForces(); //O(n**2)
-    }
-  
-    for (let pi of particles) { //O(n)
-      //pi.leapfrog(); //O(1)
-      pi.integrate();
-    }
-  
-    for (let pi of particles) { //O(n)
-      pi.stayWithinBounds(); //O(1)
-    }
-  
-    evaporate();
-  
-    // Clear the canvas and redraw all the fluid
-    const ctx = document.getElementById("fluid-canvas").getContext("2d");
-    ctx.clearRect(0, 0, widthf, heightf);
-  
-    for (let pi of particles) {
-      //pi.draw(ctx);
-    }
-    for (let pi of newParticles) {
-      //pi.draw(ctx);
-    }
-    //drawgrid(ctx);
-    drawASCII(ctx);
-  
     window.requestAnimationFrame(this.animationLoop.bind(this));
   }
 
