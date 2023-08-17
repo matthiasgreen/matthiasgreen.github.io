@@ -293,22 +293,10 @@ h1 {
 
 
 /* || Section 3: About me */
-.about-me {
-    left: 0;
-    flex: 1 0 50%;
-    margin-right: 5%;
-}
 
-picture {
-    flex: 1 0 auto;
-    height: 90%;
-}
-
-picture > img {
+.my-picture {
     height: 100%;
     border-radius: 2%;
-    right: 0;
-    position: relative;
 }
 
 h2 {
@@ -323,7 +311,19 @@ h2 {
 
 #section3 > .container {
     justify-content: space-between;
-    height: 90%;
+    height: 80%;
+    margin-bottom: 5%;
+}
+
+.about-me {
+    flex: 1 0 auto;
+    height: 100%;
+    width: 40%;
+    margin: 2rem;
+}
+
+.picture-container {
+    text-align: right;
 }
 
 

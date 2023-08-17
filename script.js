@@ -41,16 +41,16 @@ function handleProjectSwitch(event) {
         }
       }
       break;
-    case 1:
-      if (!visited.includes(1)) {
-        visited.push(1);
+    case 3:
+      if (!visited.includes(3)) {
+        visited.push(3);
         var typedBoids = new Typed(".type-boids-title", {
-          strings: ["Project 2: ^500Boids Simulation"],
+          strings: ["Project 4: ^500Boids Simulation"],
           typeSpeed: 30,
           contentType: "html"
         });
         var typedBoidsAbout = new Typed(".type-boids-explanation", {
-          strings: ["`I have long been fascinated by visual simulations of natural phenomena, espacially when simple rules lead to complex behavior.`<br>^200 `Here is an example of that: each individual boid (bird-oid) follows four rules: coherence, seperation, constant speed, and avoiding boundaries.`<br>^200 `This behavior can be seen in flocks of birds, swarms of insects, and schools of fish. It allows them to make decisions as a group and avoid predators.`<br>^200 `I therefore added a predator type in order to experiment with predation mechanics, and added food so the flock would replenish (try clicking the canvas :))`<br>^200 `I did this project in order to teach myself how to use the js canvas.`"],
+          strings: ["`I have long been fascinated by visual simulations of natural phenomena, espacially when simple rules lead to complex behavior.`<br>^200 `Here is an example of that: each individual boid (bird-oid) follows four rules: coherence, seperation, constant speed, and avoiding boundaries.`<br>^200 `This behavior can be seen in flocks of birds, swarms of insects, and schools of fish. It allows them to make decisions as a group and avoid predators.`<br>^200 `I therefore added a predator type in order to experiment with predation mechanics, and added food so the flock would replenish <mark>(try clicking the canvas)</mark>`"],
           typeSpeed: 70,
           contentType: "html",
           startDelay: 2500,
@@ -68,16 +68,16 @@ function handleProjectSwitch(event) {
         }
       }
       break;
-    case 2:
-      if (!visited.includes(2)) {
-        visited.push(2);
+    case 1:
+      if (!visited.includes(1)) {
+        visited.push(1);
         var typedFluid = new Typed(".type-fluid-title", {
-          strings: ["Project 3: ^500Fluid Simulation"],
+          strings: ["Project 2: ^500Fluid Simulation"],
           typeSpeed: 30,
           contentType: "html"
         });
         var typedFluidAbout = new Typed(".type-fluid-explanation", {
-          strings: ["`inspired by ... I decided to delve into the domain of fluid dynamics. A mistake that I will never make again.`<br>^200 `This simulation is based on smoothed-particle hydrodynamics. The set of equations used makes this simulation very sensitize to it's inital parameters.`<br>^200 `As an artistic touch, I decided to render the simulation as ASCII art and make it interactive. Try typing!`"],
+          strings: ["`Inspired by the youtube video ASCII fluid dynamics, I decided to delve into the domain of fluid dynamics, a mistake that I will never make again.`<br>^200 `This simulation is based on smoothed-particle hydrodynamics. The set of equations used makes this simulation very sensitize to it's inital parameters.`<br>^200 `As an artistic touch, I decided to render the simulation as ASCII art and make it interactive. <mark>Try typing!</mark>`"],
           typeSpeed: 70,
           contentType: "html",
           startDelay: 2500,
@@ -95,16 +95,16 @@ function handleProjectSwitch(event) {
         }
       }
       break;
-    case 3:
-      if (!visited.includes(3)) {
-        visited.push(3);
+    case 2:
+      if (!visited.includes(2)) {
+        visited.push(2);
         var typedFluid = new Typed(".type-graphics-title", {
-          strings: ["Project 4: ^500Graphics Engine from scratch"],
+          strings: ["Project 3: ^500Graphics Engine From Scratch"],
           typeSpeed: 30,
           contentType: "html"
         });
         var typedFluidAbout = new Typed(".type-graphics-explanation", {
-          strings: ["`inspired by ... I decided to delve into the domain of fluid dynamics. A mistake that I will never make again.`<br>^200 `This simulation is based on smoothed-particle hydrodynamics. The set of equations used makes this simulation very sensitize to it's inital parameters.`<br>^200 `As an artistic touch, I decided to render the simulation as ASCII art and make it interactive. Try typing!`"],
+          strings: ["`This project originated as a university project. Me and my groupmate decided to choose the creation of a 3d grapics engine as our subject.`<br>^200 `We settled on using javascript as our language of choice in order to have the engine be interactive and available online`<br>^200 `We implemented a simple shading system and basic optimization, although the program is very limited due to not using the graphics card`<br>^200 `<mark>Try clicking and dragging to move the camera !</mark>`"],
           typeSpeed: 70,
           contentType: "html",
           startDelay: 2500,
@@ -141,19 +141,19 @@ function handleProjectSwitch(event) {
       fluidAnim.pause = true;
       document.getElementById("graphics-iframe").src = "";
     break;
-    case 1:
+    case 3:
       fourierAnim.pause = true;
       boidsAnim.pause = false;
       fluidAnim.pause = true;
       document.getElementById("graphics-iframe").src = "";
     break;
-    case 2:
+    case 1:
       fourierAnim.pause = true;
       boidsAnim.pause = true;
       fluidAnim.pause = false;
       document.getElementById("graphics-iframe").src = "";
     break;
-    case 3:
+    case 2:
       fourierAnim.pause = true;
       boidsAnim.pause = true;
       fluidAnim.pause = true;
@@ -206,7 +206,7 @@ document.getElementById("graphics-continue").onclick = () => {
 //switch section 1 to 3 and vice versa on scroll
 document.addEventListener("scroll", (event)=>{
   let scroll = window.scrollY;
-  if (scroll >= window.innerHeight) {
+  if (scroll >= window.innerHeight-2) { //-2 buffer for edge
     document.dispatchEvent(projectEvent);
     section3.style.zIndex = 2;
   } else if (scroll < window.innerHeight) {
@@ -265,8 +265,6 @@ popup.addEventListener("animationend", ()=>{
     popup.style.visibility="hidden";
   }
 })
-
-
 
 window.addEventListener("loadBG", (event) => {
   document.getElementById("load-screen").classList.toggle("hidden");
