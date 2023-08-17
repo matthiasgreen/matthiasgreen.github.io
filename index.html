@@ -39,7 +39,7 @@
   </head>
 
   <body>
-    <div class="root">
+    <div id="root">
 
       <main>
 
@@ -54,14 +54,14 @@
               <li class="nav-item"><span onclick="document.getElementById('section2').scrollIntoView({ behavior: 'smooth'})">Projects</span></li>
               <li class="nav-item"><span onclick="document.getElementById('hidden-section').scrollIntoView({ behavior: 'smooth'})">About</a></li>
               <li class="nav-item"><a href="./media/Resume-Matthias-Green.pdf">Resume</a></li>
-              <li class="nav-item"><span onclick="showPopup()">Contact</a></li>
+              <li class="nav-item"><span onclick="window.showPopup()">Contact</a></li>
             </ul>
           </nav>
         </header>
   
         <div class="popup" id="contact-popup">
-          <img src="./media/close.png" class="contact-close">
-          <div class="contact-container">
+          <img onclick="window.showPopup()" src="./media/close.png" class="contact-close popup-contents">
+          <div class="contact-container popup-contents">
             <div class="contact-box">
               <img src="./media/email.png">
               <a href="mailto:matthiasgreen2@gmail.com">matthiasgreen2@gmail.com</a>
@@ -117,7 +117,7 @@
                   <div class="project-intro" id="fourier-intro">
                     <div class="project-title">
                       <span class="type-fourier-title"></span>
-                    </div>
+                    </div> 
                     <div class="project-explanation">
                       <p class="type-fourier-explanation"></p>
                     </div>
@@ -226,9 +226,9 @@
                 I have a passion for maths and computer science, and i am always eager to dive into new learning experiences and push my boundaries.
                 I am actively searching for a job so please don't hesitate to reach out!
               </p>
-              <h3>My Journey</h3>
+              <h3>My background</h3>
               <p>
-                My academic journey started with a solid two and a half years at INSA (National Institute of Applied Sciences) in Toulouse, France – a pretty prestigious engineering school.
+                My academic journey started with two and a half years at INSA (National Institute of Applied Sciences) in Toulouse, France – a pretty prestigious engineering school.
                 As I went along, I gravitated towards computer science, largely because I've always had a thing for coding and playing around with math problems.
                 I got to mix things up with an ERASMUS exchange semester at Linköping University in Sweden, which was a real game-changer in opening up my perspective.
               </p>
