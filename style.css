@@ -183,10 +183,19 @@ main {
 
 h1 {
     font-family: "Roboto Mono", monospace;
-    font-size: 50px;
+    font-size: 6vmin;
     font-weight: bold;
     text-transform: uppercase;
     z-index: 1;
+}
+
+.tooltip {
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+    bottom: 17%;
+    left: 0;
 }
 
 /* || Section 2 carousel */
@@ -248,6 +257,8 @@ h1 {
 }
 
 .project-intro {
+    text-align: left;
+    padding: 15%;
     position: relative;
     font-family: "Lato";
     font-size: small;
@@ -262,17 +273,17 @@ h1 {
 
 .project-title {
     position: relative;
-    font-size: large;
+    font-size: 1.7vmin;
     color: var(--text-light);
     z-index: 5;
     bottom: -20%;
     font-family: "Roboto Mono", monospace;
-    height: 10%
+    height: fit-content;
 }
 
 .project-explanation {
     position: relative;
-    bottom: 0;
+    font-size: 1.5vmin;
     color: white;
     bottom: -20%;
     font-family: "Roboto Mono", monospace;
@@ -281,21 +292,20 @@ h1 {
 
 .project-continue {
     position: relative;
-    bottom: 0;
-    bottom: -25%;
-    font-size: large;
+    bottom: -29%;
+    left: 0;
+    font-size: 1.5vmin;
     font-family: "Roboto Mono", monospace;
     height: 10%;
     width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: left;
 }
 
 
 /* || Section 3: About me */
 
 .my-picture {
-    height: 100%;
+    height: 65vmin;
     border-radius: 2%;
 }
 
@@ -326,6 +336,13 @@ h2 {
     text-align: right;
 }
 
+.about-me > p {
+    font-size: 1.9vmin;
+}
+
+.about-me > h3 {
+    font-size: 3vmin;
+}
 
 /* || Utilities */
 .arrow {

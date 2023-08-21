@@ -209,7 +209,7 @@ window.addEventListener("load", myInit, true); function myInit(){
 
 document.addEventListener("scroll", (event)=>{
   let scroll = window.scrollY;
-  if (scroll >= window.innerHeight) {
+  if (scroll >= window.innerHeight-2) {
     bgAnimRunning = false;
   } else if (scroll < window.innerHeight) {
     bgAnimRunning = true;

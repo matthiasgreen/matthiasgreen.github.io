@@ -17,27 +17,31 @@ function handleProjectSwitch(event) {
       if (!visited.includes(0)) {
         visited.push(0);
         var typedFourier = new Typed(".type-fourier-title", {
-          strings: ["Project 1: ^500Fourier Drawings"],
+          strings: ["`>> `^500Project 1: ^500Fourier Drawings"],
           typeSpeed: 30,
-          contentType: "html"
+          contentType: "html",
+          onComplete: function (self) {
+            self.cursor.remove();
+          }
         });
         var typedFourierAbout = new Typed(".type-fourier-explanation", {
           strings: ["`Inspired by a 3blue1brown video, I decided to create my own interactive visualisation of Fourier series.`<br>^200 `This program can take any svg composed of a single closed path as an input, and determine the coefficients of a complex Fourier series that approximates the image.`<br>^200 `<mark>Try clicking and dragging to draw new shapes!</mark>`"],
           typeSpeed: 70,
           contentType: "html",
-          startDelay: 2500,
+          startDelay: 2700,
           showCursor: false
         })
         var typedFourierContinue = new Typed(".type-fourier-continue", {
-          strings: ["Continue"],
+          strings: ["`>> `^500Continue"],
           typeSpeed: 30,
           contentType: "html",
           startDelay: 4000,
-          showCursor: false
+          cursorChar: '',
+          preStringTyped: function (arraypos, self) {
+            var cursor = document.createTextNode("|");
+            self.cursor.appendChild(cursor);
+          }
         })
-        typedFourierContinue.onComplete = {
-          showCursor: false
-        }
       }
       break;
     case 3:
@@ -173,7 +177,7 @@ document.addEventListener("projectSwitch", handleProjectSwitch);
 //Main title typing animation
 window.addEventListener("loadBG", (event) => {
   var typed = new Typed(".auto-type", {
-    strings: ["Hi...<br>^500My name is Matthias...<br>^500I'm a computer science student."],
+    strings: ["Hi...<br>^500My name is Matthias...<br>^500Welcome to my portofolio."],
     typeSpeed: 30,
     contentType: "html"
   })
@@ -307,5 +311,6 @@ if (window.mobileCheck()) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
-  parent.appendChild(document.createTextNode("Mobile site not available yet, sorry"))
+  var mess = document.createTextNode("Mobile site not available yet, sorry");
+  parent.appendChild(mess);
 }
