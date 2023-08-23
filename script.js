@@ -360,3 +360,15 @@ if (window.mobileCheck()) {
   var mess = document.createTextNode("Mobile site not available yet, sorry");
   parent.appendChild(mess);
 }
+
+//perfect page height
+function resizeSections(){
+  let height = window.innerHeight;
+  document.getElementById("section1").style.height = height+"px";
+  document.getElementById("section2").style.height = height+"px";
+  document.getElementById("section2").style["margin-top"] = height+"px";
+  document.getElementById("section3").style.height = height+"px";
+}
+
+window.onload = resizeSections;
+window.onresize = resizeSections;

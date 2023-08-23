@@ -106,7 +106,7 @@ section {
     scroll-snap-align: start;
     padding-left: 5%;
     padding-right: 5%;
-    padding-top: 5%;
+    /* padding-top: 5%; */
     width: auto;
     left: 0;
     right: 0;
@@ -167,7 +167,7 @@ main {
 }
 
 .title-container {
-    margin-top: 5%;
+    margin-top: 10%;
     margin-bottom: 10%;
 }
 
@@ -319,6 +319,7 @@ h2 {
     font-weight: bold;
     text-transform: uppercase;
     margin: 0;
+    margin-top: 5%;
     top: 0;
     height: 10%;
 }
