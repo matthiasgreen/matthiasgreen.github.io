@@ -78,12 +78,14 @@ export class fourierAnimation {
     this.context = this.canvas.getContext("2d");
     this.svg = document.getElementById('drawingSVG');
     this.pause = false;
+    this.speed = 10;
     
     //display parameters
     this.unitFact = 10; //amount of grid lines per screen width (units per screen width)
     this.unitSize; //number of pixels per unit
 
     //animation parameters
+    this.maxSeriesSize = 30;
     this.seriesSize = 30; // seriesSize*2+1 is the size of the fourier series
     this.M = 100;
 
@@ -112,6 +114,16 @@ export class fourierAnimation {
     this.getCoefficients()
       .then(() => window.requestAnimationFrame(this.animationLoop.bind(this))
     )
+    var speedSlider = document.getElementById("speedSlider");
+    speedSlider.oninput = () => {
+      this.speed = speedSlider.value;
+      this.history = [];
+    }
+    var sizeSlider = document.getElementById("sizeSlider");
+    sizeSlider.oninput = () => {
+      this.seriesSize = sizeSlider.value;
+      this.history = [];
+    }
   }
 
   convertValueToCoordinates(value){
@@ -144,7 +156,7 @@ export class fourierAnimation {
     const i = math.complex(0, 1);
 
     this.n = [0];
-    for (let j = 1; j <= this.seriesSize; j++) {
+    for (let j = 1; j <= this.maxSeriesSize; j++) {
       this.n.push(j, -j);
     }
 
@@ -164,7 +176,7 @@ export class fourierAnimation {
           this.imagePoints.push(complexPoint);
         }
         //calculate integrals and push c coefficients
-        for (let j = 0; j < this.seriesSize*2+1; j++) {
+        for (let j = 0; j < this.maxSeriesSize*2+1; j++) {
 
           var exp = math.exp(math.multiply(-this.n[j], 2*Math.PI, i));
           var totalSum = math.complex(0, 0);
@@ -193,7 +205,7 @@ export class fourierAnimation {
     
 
     this.n = [0];
-    for (let j = 1; j <= this.seriesSize; j++) {
+    for (let j = 1; j <= this.maxSeriesSize; j++) {
       this.n.push(j, -j);
     }
     let image = document.getElementById("drawingSVG"); //get image from svg
@@ -207,7 +219,7 @@ export class fourierAnimation {
       this.imagePoints.push(complexPoint);
     }
     //calculate integrals and push c coefficients
-    for (let j = 0; j < this.seriesSize*2+1; j++) {
+    for (let j = 0; j < this.maxSeriesSize*2+1; j++) {
 
       var exp = math.exp(math.multiply(-this.n[j], 2*Math.PI, i));
       var totalSum = math.complex(0, 0);
@@ -268,7 +280,7 @@ export class fourierAnimation {
 
   //needs to be rewritten
   animateFourier() {
-    const t = getTimeSinceLoadInSeconds()/10;
+    const t = getTimeSinceLoadInSeconds()/this.speed;
     const i = math.complex(0, 1);
     //task: trace final point, coordinates are sum of complex exponiatials with cn coefficient and increasing rate
     //in order +1, -1, +2, -2, +3, -3, etc trace circle linked to each other and hand
@@ -321,7 +333,7 @@ export class fourierAnimation {
 
     //save point history
     this.history.push(coords);
-    this.history = this.history.slice(-580);
+    this.history = this.history.slice(-(58*this.speed));
 
     //draw trail
     this.context.strokeStyle = "yellow";

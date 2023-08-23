@@ -8,6 +8,7 @@ var fourierAnim = {};
 var boidsAnim = {};
 var fluidAnim = {};
 var visited = [];
+var continued = [];
 
 function handleProjectSwitch(event) {
   const projectIndex = glideHero.index;
@@ -25,7 +26,7 @@ function handleProjectSwitch(event) {
           }
         });
         var typedFourierAbout = new Typed(".type-fourier-explanation", {
-          strings: ["`Inspired by a 3blue1brown video, I decided to create my own interactive visualisation of Fourier series.`<br>^200 `This program can take any svg composed of a single closed path as an input, and determine the coefficients of a complex Fourier series that approximates the image.`<br>^200 `<mark>Try clicking and dragging to draw new shapes!</mark>`"],
+          strings: ["`Inspired by a <a href='https://www.youtube.com/watch?v=r6sGWTCMz2k'>3blue1brown video</a>, I decided to create my own interactive visualisation of complex Fourier series.`<br>^200 `This program can take any svg composed of a single closed path as an input, and determine the coefficients of a complex Fourier series that approximates the image.`<br>^200 `<mark>Try clicking and dragging to draw new shapes!</mark>`"],
           typeSpeed: 70,
           contentType: "html",
           startDelay: 2700,
@@ -48,9 +49,12 @@ function handleProjectSwitch(event) {
       if (!visited.includes(3)) {
         visited.push(3);
         var typedBoids = new Typed(".type-boids-title", {
-          strings: ["Project 4: ^500Boids Simulation"],
+          strings: ["`>> `^500Project 4: ^500Boids Simulation"],
           typeSpeed: 30,
-          contentType: "html"
+          contentType: "html",
+          onComplete: function (self) {
+            self.cursor.remove();
+          }
         });
         var typedBoidsAbout = new Typed(".type-boids-explanation", {
           strings: ["`I have long been fascinated by visual simulations of natural phenomena, espacially when simple rules lead to complex behavior.`<br>^200 `Here is an example of that: each individual boid (bird-oid) follows four rules: coherence, seperation, constant speed, and avoiding boundaries.`<br>^200 `This behavior can be seen in flocks of birds, swarms of insects, and schools of fish. It allows them to make decisions as a group and avoid predators.`<br>^200 `I therefore added a predator type in order to experiment with predation mechanics, and added food so the flock would replenish <mark>(try clicking the canvas)</mark>`"],
@@ -60,11 +64,16 @@ function handleProjectSwitch(event) {
           showCursor: false
         })
         var typedBoidsContinue = new Typed(".type-boids-continue", {
-          strings: ["Continue"],
+          strings: ["`>> `^500Continue"],
           typeSpeed: 30,
           contentType: "html",
           startDelay: 4000,
-          showCursor: true
+          showCursor: true,
+          cursorChar: '',
+          preStringTyped: function (arraypos, self) {
+            var cursor = document.createTextNode("|");
+            self.cursor.appendChild(cursor);
+          }
         })
         typedBoidsContinue.onComplete = {
           showCursor: false
@@ -75,61 +84,71 @@ function handleProjectSwitch(event) {
       if (!visited.includes(1)) {
         visited.push(1);
         var typedFluid = new Typed(".type-fluid-title", {
-          strings: ["Project 2: ^500Fluid Simulation"],
+          strings: ["`>> `^500Project 2: ^500Fluid Simulation"],
           typeSpeed: 30,
-          contentType: "html"
+          contentType: "html",
+          onComplete: function (self) {
+            self.cursor.remove();
+          }
         });
         var typedFluidAbout = new Typed(".type-fluid-explanation", {
-          strings: ["`Inspired by the youtube video ASCII fluid dynamics, I decided to delve into the domain of fluid dynamics, a mistake that I will never make again.`<br>^200 `This simulation is based on smoothed-particle hydrodynamics. The set of equations used makes this simulation very sensitize to it's inital parameters.`<br>^200 `As an artistic touch, I decided to render the simulation as ASCII art and make it interactive. <mark>Try typing!</mark>`"],
+          strings: ["`Inspired by the youtube video <a href='https://www.youtube.com/watch?v=QMYfkOtYYlg'>ASCII fluid dynamics</a>, I decided to delve into the domain of fluid dynamics, a mistake that I will never make again.`<br>^200 `This simulation is based on smoothed-particle hydrodynamics. The set of equations used makes this simulation very sensitize to it's inital parameters.`<br>^200`<mark>Try typing!</mark>`"],
           typeSpeed: 70,
           contentType: "html",
           startDelay: 2500,
           showCursor: false
         })
         var typedFluidContinue = new Typed(".type-fluid-continue", {
-          strings: ["Continue"],
+          strings: ["`>> `^500Continue"],
           typeSpeed: 30,
           contentType: "html",
           startDelay: 4000,
-          showCursor: true
+          showCursor: true,
+          cursorChar: '',
+          preStringTyped: function (arraypos, self) {
+            var cursor = document.createTextNode("|");
+            self.cursor.appendChild(cursor);
+          }
         })
-        typedFluidContinue.onComplete = {
-          showCursor: false
-        }
       }
       break;
     case 2:
       if (!visited.includes(2)) {
         visited.push(2);
         var typedFluid = new Typed(".type-graphics-title", {
-          strings: ["Project 3: ^500Graphics Engine From Scratch"],
+          strings: ["`>> `^500Project 3: ^500Graphics Engine from Scratch"],
           typeSpeed: 30,
-          contentType: "html"
+          contentType: "html",
+          onComplete: function (self) {
+            self.cursor.remove();
+          }
         });
         var typedFluidAbout = new Typed(".type-graphics-explanation", {
-          strings: ["`This project originated as a university project. Me and my groupmate decided to choose the creation of a 3d grapics engine as our subject.`<br>^200 `We settled on using javascript as our language of choice in order to have the engine be interactive and available online`<br>^200 `We implemented a simple shading system and basic optimization, although the program is very limited due to not using the graphics card`<br>^200 `<mark>Try clicking and dragging to move the camera !</mark>`"],
+          strings: ["`This program originated as a university project. Me and my groupmate decided to choose the creation of a 3d grapics engine as our subject.`<br>^200 `We settled on using javascript as our language of choice in order to have the engine be interactive and available online`<br>^200 `We implemented a simple shading system and basic optimization, although the program is very limited due to not using the graphics card`<br>^200 `<mark>Try clicking and dragging to move the camera !</mark>`"],
           typeSpeed: 70,
           contentType: "html",
           startDelay: 2500,
           showCursor: false
         })
         var typedFluidContinue = new Typed(".type-graphics-continue", {
-          strings: ["Continue"],
+          strings: ["`>> `^500Continue"],
           typeSpeed: 30,
           contentType: "html",
           startDelay: 4000,
-          showCursor: true
+          showCursor: true,
+          cursorChar: '',
+          preStringTyped: function (arraypos, self) {
+            var cursor = document.createTextNode("|");
+            self.cursor.appendChild(cursor);
+          }
         })
-        typedFluidContinue.onComplete = {
-          showCursor: false
-        }
       }
       break;
     case 4:
       if (!visited.includes(4)) {
         visited.push(4);
         var typedFluid = new Typed(".type-lila-title", {
-          strings: ["Work in progress: ^500Photography portofolio for Presse Agrume"],
+          strings: ["`>> `^500Work in progress: ^500Photography portofolio for Presse Agrume"],
           typeSpeed: 30,
           contentType: "html"
         });
@@ -183,28 +202,55 @@ window.addEventListener("loadBG", (event) => {
   })
 });
 
-document.getElementById("fourier-continue").onclick = () => {
-  document.getElementById("fourier-intro").classList.toggle("hidden");
-  fourierAnim = new fourierAnimation();
-  window.addEventListener("resize", fourierAnim.resizeCanvas.bind(fourierAnim), false);
+//For continue button
+function handleContinue() {
+  const projectIndex = glideHero.index;
+  switch (projectIndex) {
+    case 0:
+      if (!continued.includes(0)) {
+        continued.push(0);
+        document.getElementById("fourier-intro").classList.toggle("hidden");
+        fourierAnim = new fourierAnimation();
+        window.addEventListener("resize", fourierAnim.resizeCanvas.bind(fourierAnim), false);
+      }
+      break;
+    case 1:
+      if (!continued.includes(1)) {
+        continued.push(1);
+        document.getElementById("fluid-intro").classList.toggle("hidden");
+        fluidAnim = new fluidAnimation();
+      }
+      break;
+    case 2:
+      if (!continued.includes(2)) {
+        continued.push(2);
+        document.getElementById("graphics-intro").classList.toggle("hidden");
+        document.getElementById("graphics-iframe").src = "./graphinsa-main/index.html";
+        graphicsStarted = true;
+      }
+      break;
+    case 3:
+      if (!continued.includes(3)){
+        continued.push(3);
+        document.getElementById("boids-intro").classList.toggle("hidden");
+        boidsAnim = new boidAnimation();
+        window.addEventListener("resize", boidsAnim.sizeCanvas.bind(boidsAnim), false);
+      }
+      break;
+  }
 }
 
-document.getElementById("boids-continue").onclick = () => {
-  document.getElementById("boids-intro").classList.toggle("hidden");
-  boidsAnim = new boidAnimation();
-  window.addEventListener("resize", boidsAnim.sizeCanvas.bind(boidsAnim), false);
-}
+document.querySelectorAll(".project-continue").forEach(el => {
+  el.onclick = () => {
+    handleContinue();
+  }
+});
 
-document.getElementById("fluid-continue").onclick = () => {
-  document.getElementById("fluid-intro").classList.toggle("hidden");
-  fluidAnim = new fluidAnimation();
-}
-
-document.getElementById("graphics-continue").onclick = () => {
-  document.getElementById("graphics-intro").classList.toggle("hidden");
-  document.getElementById("graphics-iframe").src = "./graphinsa-main/index.html";
-  graphicsStarted = true;
-}
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Enter") {  //checks whether the pressed key is "Enter"
+    handleContinue();
+  }
+})
 
 //switch section 1 to 3 and vice versa on scroll
 document.addEventListener("scroll", (event)=>{

@@ -50,7 +50,7 @@
         <header>
           <nav>
             <ul class="nav-list">
-               <li class="nav-item"><!--<img src="../media/Logo_Matt.png" width="32px" height="32px">--></li> 
+              <li class="nav-item"><!--<img src="../media/Logo_Matt.png" width="32px" height="32px">--></li> 
               <li class="nav-item"><span onclick="document.getElementById('section2').scrollIntoView({ behavior: 'smooth'})">Projects</span></li>
               <li class="nav-item"><span onclick="document.getElementById('hidden-section').scrollIntoView({ behavior: 'smooth'})">About</a></li>
               <li class="nav-item"><a href="./media/Resume-Matthias-Green.pdf">Resume</a></li>
@@ -111,6 +111,14 @@
                   <div class="project-container" id="fourier-container">
                     <canvas id="fourier-canvas"></canvas>
                     <svg id="drawingSVG"></svg>
+                    <div class="slidecontainer">
+                      <input type="range" min="2" max="20" value="10" class="slider" id="speedSlider">
+                      <p>Speed</p>
+                    </div>
+                    <div class="slidecontainer">
+                      <input type="range" min="2" max="30" value="30" class="slider" id="sizeSlider">
+                      <p>Series Size</p>
+                    </div>
                   </div>
 
                   <div class="project-intro" id="fourier-intro">
@@ -137,10 +145,10 @@
                       <span class="type-fluid-title"></span>
                     </div>
                     <div class="project-explanation">
-                      <p class="type-fluid-explanation"></p>
+                      <span class="type-fluid-explanation"></span>
                     </div>
                     <div class="project-continue" id="fluid-continue">
-                      <p class="type-fluid-continue"></p>
+                      <span class="type-fluid-continue"></span>
                     </div>
                   </div>
                 </li>
@@ -155,10 +163,10 @@
                       <span class="type-graphics-title"></span>
                     </div>
                     <div class="project-explanation">
-                      <p class="type-graphics-explanation"></p>
+                      <span class="type-graphics-explanation"></span>
                     </div>
                     <div class="project-continue" id="graphics-continue">
-                      <p class="type-graphics-continue"></p>
+                      <span class="type-graphics-continue"></span>
                     </div>
                   </div>
                 </li>
@@ -173,10 +181,10 @@
                       <span class="type-boids-title"></span>
                     </div>
                     <div class="project-explanation">
-                      <p class="type-boids-explanation"></p>
+                      <span class="type-boids-explanation"></span>
                     </div>
                     <div class="project-continue" id="boids-continue">
-                      <p class="type-boids-continue"></p>
+                      <span class="type-boids-continue"></span>
                     </div>
                   </div>
                 </li>
@@ -190,10 +198,10 @@
                       <span class="type-lila-title"></span>
                     </div>
                     <div class="project-explanation">
-                      <p class="type-lila-explanation"></p>
+                      <span class="type-lila-explanation"></span>
                     </div>
                     <div class="project-continue" id="lila-continue">
-                      <p class="type-lila-continue"></p>
+                      <span class="type-lila-continue"></span>
                     </div>
                   </div>
 
