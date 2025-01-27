@@ -1,0 +1,54 @@
+{
+    "homePage": {
+        "title": "Bienvenue sur mon site web"
+    },
+    "aboutPage": {
+        "title": "A propos de moi",
+        "subtitle": "Ceci est la page a propos"
+    },
+    "projects": {
+        "chess": {
+            "tabs": {
+                "presentation": "Présentation du projet",
+                "play": "Jouer contre mon moteur",
+                "deepDive": "En profondeur"
+            },
+            "presentation": {
+                "introduction": {
+                    "heading": "Introduction",
+                    "part1": "En tant que programmeur passionné et joueur d'échecs semi-régulier, j'ai toujours été fasciné par les moteurs d'échecs. ",
+                    "part2": "Depuis le match historique entre Deep Blue et Kasparov, les moteurs d'échecs surpassent les joueurs humains. ",
+                    "part3": "Des moteurs modernes tels que Stockfish ou Leela jouent à un niveau bien au-delà des joueurs humains, mais même avec du matériel moderne, ce problème est loin d'être trivial. ",
+                    "part4": "Il y a quelques semaines, j'ai décidé de voir si j'avais ce qu'il faut pour le résoudre avec peu de connaissances préalables. ",
+                    "part5": "Pour des raisons de performance, il est assez important d'utiliser un langage avec une gestion manuelle de la mémoire. J'ai décidé d'utiliser Rust pour acquérir de nouvelles compétences."
+                },
+                "problem": {
+                    "heading": "Définir le problème",
+                    "part1": "Dans un monde idéal, le problème peut être défini comme suit : 'Étant donné une position d'échecs légale, si les deux joueurs jouent parfaitement, qui gagne et quelle séquence de coups mène à ce résultat.' ",
+                    "part2": "Cependant, le nombre de séquences de coups croît de manière exponentielle, et après seulement 10 coups, il y a près de 70 billions de séquences possibles. ",
+                    "part3": "Trouver la solution correcte à ce problème est donc complètement irréalisable, mais nous pouvons trouver une approximation de la solution en ne regardant que quelques coups à l'avance. ",
+                    "part4": "Nous devons donc modifier le problème pour remplacer le résultat strict par une valeur continue appelée évaluation. ",
+                    "part5": "Cette évaluation est typiquement exprimée en unités de pions (par exemple, une évaluation de +2 représente un avantage pour les blancs équivalent à avoir 2 pions supplémentaires)"
+                },
+                "steps": {
+                    "heading": "Solution pas à pas",
+                    "part1": "Un moteur d'échecs peut être décomposé en quelques composants. Pour plus d'informations sur ces étapes, jetez un coup d'œil à l'onglet en profondeur. ",
+                    "bullet": {
+                        "part1": "<strong>Représentation de l'état du jeu :</strong> Cette structure de données doit stocker toutes les informations nécessaires sur le jeu, y compris :",
+                        "part2": "<ul><li>La position de toutes les pièces sur l'échiquier.</li><li>La couleur du joueur qui doit jouer</li><li>La case en passant</li><li>Le compteur de demi-coups (pour suivre la règle des 50 coups)</li><li>Les droits de roque</li></ul>",
+                        "part3": "<em>Notez que la répétition triplée ne peut pas être déterminée à partir de ces données, mais cela sera pris en compte plus tard.</em>",
+                        "part4": "<strong>Représentation du coup :</strong> Cette structure de données doit stocker uniquement les cases de départ et d'arrivée de la pièce, et les informations de promotion. Pour des raisons pratiques, plus de drapeaux sont inclus.",
+                        "part5": "<strong>Génération de coups :</strong> Cette fonction génère des coups légaux pour une position donnée. En pratique, il est beaucoup plus facile de générer des coups pseudo-légaux qui peuvent laisser le roi en échec, et de vérifier si le coup était légal après l'avoir joué.",
+                        "part6": "<strong>Faire-Défaire un coup :</strong> Ces fonctions prennent une position et un coup, et modifient la position en fonction du coup. Pour comprendre pourquoi nous avons besoin d'une fonction de défaire, consultez l'onglet en profondeur.",
+                        "part7": "<strong>Évaluer :</strong> Cette fonction évalue statiquement (c'est-à-dire sans utiliser faire-défaire) une position en fonction d'heuristiques telles que le matériel, la structure des pions, la sécurité du roi, etc...",
+                        "part8": "<strong>Recherche :</strong> Cette fonction examine les séquences de coups d'une certaine profondeur et détermine la meilleure séquence de coups pour les deux joueurs.",
+                        "part9": "<strong>Approfondissement itératif :</strong> Cette fonction appelle la recherche avec une profondeur croissante afin de gérer le temps."
+                    },
+                    "part2": "La génération de coups et le faire-défaire ne sont pas très compliqués, mais assez fastidieux à écrire en raison du grand nombre de règles à prendre en compte, et du niveau d'optimisation nécessaire. ",
+                    "part3": "La fonction de recherche est assez simple en essence, mais diverses améliorations telles que la recherche alpha-bêta, la recherche de quiétude, et les tables de transposition peuvent la rendre assez compliquée. ",
+                    "part4": "La fonction d'évaluation est le facteur limitant de la plupart des moteurs d'échecs. Elle repose entièrement sur des heuristiques, mais peut également être réalisée à l'aide de l'apprentissage par renforcement."
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,135 @@
+{
+    "homePage": {
+        "title": "Welcome to my website"
+    },
+    "aboutPage": {
+        "title": "About me",
+        "subtitle": "This is the about page"
+    },
+    "projects": {
+        "chess": {
+            "tabs": {
+                "presentation": "Project presentation",
+                "play": "Play my engine",
+                "deepDive": "Deep dive"
+            },
+            "presentation": {
+                "introduction": {
+                    "heading": "Introduction",
+                    "part1": "As an avid programmer and semi-regular chess player, I've always been fascinated by chess engines. ",
+                    "part2": "Ever since Deep Blue's historic game against Kasparov, chess engines have outclassed human players. ",
+                    "part3": "Modern engines such as Stockfish or Leela play at a level far beyond human players, but even with modern hardware, this problem is far from trivial. ",
+                    "part4": "A few weeks ago I decided to see if I have what it takes to solve it with little prior knowledge. ",
+                    "part5": "For performance reasons, it is quite important to use a language with manual memory management. I decided to use Rust in order to acquire new skills."
+                },
+                "problem": {
+                    "heading": "Defining the problem",
+                    "part1": "In an ideal world, the problem can be defined as such: 'Given any legal chess position, if both players play perfectly, who wins and what sequence of moves leads to that outcome.' ",
+                    "part2": "However, the number of move sequences grows exponentially, and after only 10 moves, there are almost 70 trillion possible sequences. ",
+                    "part3": "Finding the correct solution to this problem is therefore completely unfeasible, but we can find an approximation of the solution by looking only a few steps ahead. ",
+                    "part4": "So we must modify the problem to replace the strict win, draw, or loss with a continuous value called evaluation. ",
+                    "part5": "This evaluation is typically expressed in units of pawns (e.g. An evaluation of +2 represents an advantage for white equivalent to having 2 extra pawns)"
+                },
+                "steps": {
+                    "heading": "Step by step solution",
+                    "part1": "A chess engine can be broken down into a few components. For more information about these steps, take a look at the deep dive tab. ",
+                    "bullet": {
+                        "part1": "<strong>Game state representation:</strong> This data structure must store all necessary information about the game which includes:",
+                        "part2": "<ul><li>The position of all pieces on the board.</li><li>The color who's turn it is</li><li>The en-passant square</li><li>The halfmove timer (to track the 50-move rule)</li><li>Castling rights</li></ul>",
+                        "part3": "<em>Note that threefold repetition cannot be determined from this data, but that will be taken into account later.</em>",
+                        "part4": "<strong>Move representation:</strong> This data structure only has to store the squares the piece moved from and to, and promotion information. For practical purposes, more flags are included.",
+                        "part5": "<strong>Move generation:</strong> This function generates legal moves given a position. In practice it is much easier to generate pseudo-legal moves that may leave the king in check, and check if the move was legal after making the move.",
+                        "part6": "<strong>Make-Unmake move:</strong> These functions take a position and a move, and modify the position according to the move. To understand why we need an unmake function, check out the deep dive.",
+                        "part7": "<strong>Evaluate:</strong> This function statically (i.e. without using make-unmake) evaluates a position based on heuristics such as material, pawn structure, king safety, etc...",
+                        "part8": "<strong>Search:</strong> This function looks at move sequences of a certain depth and determines the best sequence of moves for both players.",
+                        "part9": "<strong>Iterative deepening:</strong> This function calls search with increasing depth in order to manage time."
+                    },
+                    "part2": "Move generation and make-unmake are not very complicated, but quite tedious to write due to the large number of rules that need to be accounted for, and the level of optimisation needed. ",
+                    "part3": "The search function is quite simple in essence, but various improvements such as alpha-beta search, quiescence search, and transposition tables can make it quite complicated. ",
+                    "part4": "The evaluation function is the limiting factor of most chess engines. It relies entirely on heuristics, but can also be done using reinforcement learning."
+                }
+            },
+            "deepDive": {
+                "introduction": {
+                    "heading": "Introduction",
+                    "part1": "In this section, I'll take you through the process of making a chess engine which plays at a pretty high level."
+                },
+                "boardRepresentation": {
+                    "heading": "Board Representation",
+                    "part1": "The choice of board representation, or data structure storing the positions of pieces on the chess board, is fundamental in chess programming. ",
+                    "part2": "A few different options exist, but bitboards are generally considered the best option. ",
+                    "part3": "A bitboard is a unsigned 64 bit integer where each bit represents a square on the chess board, and a 1 indicates the presence of a piece. ",
+                    "part4": "10 bitboards (one for each piece type and colour) are therefore necessary to store the board's state. (Examples) ",
+                    "part5": "While this representation is quite sparse with low information density, this does not matter much when using a make-unmake approach instead of copy-make. (Link) ",
+                    "part6": "Bitboards allow for very fast computation thanks to the intrinsic bitwise boolean operations, trailing and leading zero counting operations, bitshift, and popcount(). "
+                },
+                "gameState": {
+                    "heading": "Game State Representation",
+                    "part1": "In order to capture the entire game state, we need a little more information. This includes the active colour, castling rights, en-passant status, and a half move counter to track the 50 move rule. ",
+                    "part2": "In this section, we will ignore threefold repetition status as this would require storing all previous moves and it can handled more efficiently later on. This is a form of leaky abstraction, but the performance cost makes this necessary. ",
+                    "part3": "Active colour and castling rights can easily be stored as flags in a unsigned 8, and en-passant status can be stored as an additional bitboard. "
+                },
+                "moveRepresentation": {
+                    "heading": "Move Representation",
+                    "part1": "A move can be represented by just the square the piece is moving from, the square it's moving to, and the optional promotion piece. ",
+                    "part2": "We can add a little extra useful information without using much more memory by including flags for captures, capture promotions, double pawn pushes, and en passant. "
+                },
+                "moveGeneration": {
+                    "heading": "Move Generation",
+                    "part1": "Move generation comes in two different forms: pseudo legal, and legal. Pseudo-legal moves are otherwise legal moves which may leave the king in check. Move legality must therefore be verified by making the move and checking if the king is in check. ",
+                    "part2": "I decided to implement pseudo-legal move generation, as it is rather complicated to account for all the ways a move can leave the king in check, and the performance cost is rather small. ",
+                    "part3": "The easiest piece to generate moves for is the knight, as it can jump over other pieces (less things to check) and doesn't have special rules. ",
+                    "part4": "Let's introduce a MoveMaps struct, containing an array of 64 bitboards. The bitboard at index i in this array contains 1s in all the squares a knight on square i can move to. These bitboards can be generated once at startup for efficiency. ",
+                    "part5": {
+                        "intro": "The approach is the following: ",
+                        "bullet1": "Copy the bitboard storing the active player's knights. ",
+                        "bullet2": "While this bitboard is not empty, remove the least significant bit and get it's index. This is the number of a square a knight is on. ",
+                        "bullet3": "Access the index element of the move_maps, which contains the squares the knight on this square can possibly move to. ",
+                        "bullet4": "Intersect these moves with the squares where there are no friendly pieces. ",
+                        "bullet5": "Add each of these possible moves to the move list. ",
+                        "bullet6": "Note another intersection with enemy occupation is needed for detecting captures. "
+                    },
+                    "part6": "Sliding pieces follow the same approach but are a little more complicated since they can't pass through other pieces. ",
+                    "part7": "We use some complex intersections and msb/lsb operations to solve these. ",
+                    "part8": "Pawns..."
+                },
+                "makeUnmake": {
+                    "heading": "Make-Unmake",
+                    "part1": "While the make function is rather self-explanatory, taking a game state and move, and computing the state after playing the move. On the other hand, it seems unecessary to have un unmake function, since we can simply 'copy' the state before making a move, and restore it later. ",
+                    "part2": "However, the overhead of copying a position and storing it in a new stack frame is expensive compared to the 3-6 bits that unmake modifies. ",
+                    "part3": "The more astute readers may have realised that there is an issue with the unmake approach: some moves cause the state to lose information, and are therefore irreversible. ",
+                    "part4": "For instance, if a piece is captured on make, the type of piece which was captured is lost. We can solve this issue by adding a stack which stores irreversible information. (Code) ",
+                    "part5": "Another detail to note at this stage is hashing. Hashing is a technique that converts a chess position into a mostly unique number of fixed length. We will need to hash game states later for optimisations such as transposition tables. ",
+                    "part6": "We use an xor based technique called Zobrist hashing for performance. Essentially, a random number for each binary piece of state information (white knight on a5, black kingside castle rights, etc...) is generated at startup. ",
+                    "part7": "Given a game state, we start with a hash equal to zero and iterate through each of these bits of information, xoring the random number if the information is true. This returns the hash of the position. ",
+                    "part8": "A great advantage of this technique is that xor is it's own inverse. In other words, a ^ b ^ a = b. This means we can incrementally update the hash during make-unmake in order to avoid the costly calculation described above.",
+                    "part9": "For example, if we make a knight move from b1 to c2, we update the hash as follows: hash := hash ^ [white knight on b1 number] ^ [white knight on c2 number] ^ [side to move number]. ",
+                    "part10": "When we unmake the move, we update the hash in the exact same way, and end up with our initial hash! "
+                },
+                "evaluation": {
+                    "heading": "Evaluation",
+                    "part1": "In certain games with a small search space, it is feasible to calculate the 'perfect' solution. However, chess is not one of those games. ",
+                    "part2": "The search tree must stop at a certain depth, meaning we cannot explore each sequence of moves until draw or checkmate. ",
+                    "part3": "We therefore need a function which tells us which player is winning 'at a glance', without looking ahead. We call this the evaluation function. ",
+                    "part4": "Most chess players will be familiar with the concept of material. This involves assigning a value to each type of piece (typically 1 for pawns, 3 for knights and bishops, 5 for rooks, and 9 for queens), and counting the sum of material for each player. ",
+                    "part5": "More advanced chess players will also take into account pawn structure, noticing patterns such as passed, doubled, and isolated pawns. ",
+                    "part6": "Other concepts such as mobility, king safety, and development are also important for an accurate evaluation. ",
+                    "part7": "This type of heuristic analysis is something that humans are very good at, but that can be very tedious and difficult to program. ",
+                    "part8": "It is therefore a prime candidate for machine learning, which we will look into later.",
+                    "part9": "Our function returns a signed integer, with and evaluation measured in centipawns. For example, if black has an advantage equal to a knight, the score will be -300. "
+                },
+                "search": {
+                    "heading": "Search",
+                    "part1": "The search function is the most important and most complex part of a chess engine. It's role is to find the best sequence of moves for both players from any position.",
+                    "minimax": {
+                        "heading": "Minimax",
+                        "part1": "In order to understand better algorithms, we need to start with the basic brute-force approach, minimax. ",
+                        "part2": "As the name suggests, the idea is to find the move which minimizes the score on nodes where it's black to play, and maximize the score on nodes where it's white to play.",
+                        "part3": "This algorithm is recursive, alternating calls between the maximising function and the minimising function. ",
+                        "part4": "(Graphs)"
+                    }
+                }
+            }
+        }
+    }
+}
