@@ -7,7 +7,6 @@ import './i18n'
 import Page from './components/page/Page'
 import About from './pages/About'
 import ChessProject from './pages/chess/ChessProject'
-import init from 'chess-engine'
 import FourierProject from './pages/fourier/FourierProject'
 
 // async function initWasm() {

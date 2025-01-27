@@ -4,7 +4,7 @@ import PageTabs from "../../components/page/PageTabs";
 import "./ChessProject.css";
 import { Trans, useTranslation } from "react-i18next";
 import { useState } from "react";
-import { evaluate, is_move_legal, needs_promotion, make_move, respond } from "chess-engine";
+import { is_move_legal, needs_promotion, make_move, respond } from "chess-engine";
 import Infobox from "../../components/page/Infobox";
 
 function Presentation() {
@@ -61,7 +61,7 @@ function PlayChess() {
         setFen(respond({fen: newState.fen, pgn: ""}).fen);
     }
 
-    function handleMove(sourceSquare: string, targetSquare: string, piece: string) {
+    function handleMove(sourceSquare: string, targetSquare: string, _piece: string) {
         const move = sourceSquare + targetSquare;
         if (!is_move_legal(fen, move)) {
             console.log("illegal")
@@ -76,7 +76,7 @@ function PlayChess() {
         return true;
     }
 
-    function onPromotionCheck(sourceSquare: string, targetSquare: string, piece: string) {
+    function onPromotionCheck(sourceSquare: string, targetSquare: string, _piece: string) {
         return is_move_legal(fen, sourceSquare + targetSquare) && needs_promotion(fen, sourceSquare + targetSquare);
     }
 
