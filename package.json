@@ -1,5 +1,6 @@
 {
-  "name": "new-website",
+  "name": "matthiasgreen-portfolio",
+  "homepage": "https://matthiasgreen.github.io/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
