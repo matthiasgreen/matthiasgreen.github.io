@@ -5,10 +5,6 @@ import topLevelAwait from 'vite-plugin-top-level-await'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/",
   plugins: [react(), wasm(), topLevelAwait()],
-  server: {
-    fs: {
-      allow: ['..']
-    }
-  }
 })
