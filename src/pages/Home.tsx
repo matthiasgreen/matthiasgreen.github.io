@@ -10,13 +10,13 @@ export default function Home() {
       title: "Chess engine",
       description: "A chess engine written from scratch in Rust.",
       image: chessIcon,
-      link: "/projects/chess-engine"
+      link: "#/projects/chess-engine"
     },
     {
       title: "Fourier Doodle",
       description: "A Fourier series visualizer.",
       image: fourierIcon,
-      link: "/projects/fourier-doodle"
+      link: "#/projects/fourier-doodle"
     }
   ]
 
