@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import PageTabs from "../../components/page/PageTabs";
 import "./FourierProject.css";
+import { FourierAnimation } from "fourier-animation";
+import Infobox from "../../components/page/Infobox";
 
 function Presentation() {
     return (
@@ -12,32 +14,31 @@ function Presentation() {
 }
 
 function Demonstration() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
     useEffect(() => {
-        const canvas = canvasRef.current;
-        if (canvas == null) {
-            alert("Canvas not found");
-            return;
+        if (!containerRef.current || !canvasRef.current) return;
+        const animation = new FourierAnimation(canvasRef.current);
+        const resizeCanvas = () => {
+            if (!containerRef.current || !canvasRef.current) throw new Error("Canvas or container not found");
+            animation.resizeCanvas(containerRef.current.clientHeight, containerRef.current.clientWidth);
         }
-        const ctx = canvas.getContext("2d");
-        if (!ctx) {
-            alert("Context not found");
-            return;
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        function animate() {
+            animation.renderFrame();
+            requestAnimationFrame(animate);
         }
-
-        // const renderer = new FourierRenderer(ctx);
-        // const animate = () => {
-        //     renderer.renderFrame();
-        //     requestAnimationFrame(animate);
-        // }
-        // animate();
-    });
+        animate();
+    }, []);
 
     return (
-        <div className="canvas-container">
-            <canvas ref={canvasRef}></canvas>
-        </div>
+        <>
+            <Infobox><span>Click and drag to draw something!</span></Infobox>
+            <div ref={containerRef} className="canvas-container">
+                <canvas ref={canvasRef} ></canvas>
+            </div>
+        </>
     )
 }
 
