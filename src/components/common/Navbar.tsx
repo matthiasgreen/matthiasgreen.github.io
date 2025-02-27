@@ -7,8 +7,8 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
-import { Avatar, IconButton, Link, Stack, styled } from '@mui/material';
-import { GitHub, Language, Menu as MenuIcon } from '@mui/icons-material';
+import { IconButton, Stack, styled } from '@mui/material';
+import { Language, Menu as MenuIcon } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { drawerWidth } from '../page/NavigationDrawer';
 import { GithubLink, LinkedInLink } from './LogoLinks';
@@ -34,7 +34,7 @@ export interface NavBarProps {
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 export function NavBar({ drawer, pages, languages, handleDrawerToggle }: NavBarProps) {
-  const {t, i18n} = useTranslation();
+  const {i18n} = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
 

@@ -137,7 +137,7 @@ const headings: HeadingLink[] = [
 export default function FourierProject() {
   const { t } = useTranslation("projects", { keyPrefix: "fourier" });
   return (
-    <Page headings={headings}>
+    <Page headings={headings} githubLink="matthiasgreen/fourier-animation">
       <H1>{t("heading")}</H1>
       <Presentation />
       <Demonstration />

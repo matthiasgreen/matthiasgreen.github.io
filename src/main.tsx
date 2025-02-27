@@ -7,7 +7,7 @@ import './i18n'
 import About from './pages/About'
 import ChessProject from './pages/chess/ChessProject'
 import FourierProject from './pages/fourier/FourierProject'
-import { Box, createTheme, CssBaseline, LinkProps, responsiveFontSizes, ThemeProvider } from '@mui/material'
+import { createTheme, CssBaseline, LinkProps, responsiveFontSizes, ThemeProvider } from '@mui/material'
 import React from 'react'
 import Projects from './pages/Projects'
 

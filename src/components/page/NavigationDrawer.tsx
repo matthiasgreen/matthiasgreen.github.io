@@ -1,4 +1,5 @@
-import { Box, Drawer, List, ListItemButton, ListItemText, ListSubheader, } from "@mui/material";
+import { Box, Divider, Drawer, List, ListItemButton, ListItemText, ListSubheader, } from "@mui/material";
+import { GithubLink } from "../common/LogoLinks";
 
 export interface HeadingLink {
   headingNumber: number;
@@ -9,6 +10,7 @@ export interface HeadingLink {
 
 interface NavigationDrawerProps {
   headings: HeadingLink[];
+  githubLink: string;
   mobileOpen: boolean;
   setMobileOpen: (open: boolean) => void;
   isClosing: boolean;
@@ -38,29 +40,35 @@ function RecursizeRenderHeadings({ heading, setMobileOpen }: { heading: HeadingL
   );
 }
 
-function NavigationDrawerContents({ headings, setMobileOpen }: {headings: HeadingLink[], setMobileOpen: (open: boolean) => void}) {
+function NavigationDrawerContents({ githubLink, headings, setMobileOpen }: {githubLink: string, headings: HeadingLink[], setMobileOpen: (open: boolean) => void}) {
   return (
-    <List
-      subheader={
-        <ListSubheader component="div">
-          Contents
-        </ListSubheader>
-      }
-      sx={{
-        padding: 2,
-      }}
-      dense
-    >
-      {headings.map((heading, index) => (
-        <RecursizeRenderHeadings key={index} heading={heading} setMobileOpen={setMobileOpen} />
-      ))}
-    </List>
+    <>
+      <Box display="flex" justifyContent="center" alignItems="center" padding={2}>
+        <GithubLink text="View on Github" page={githubLink}/>
+      </Box>
+      <Divider />
+      <List
+        subheader={
+          <ListSubheader component="div">
+            Contents
+          </ListSubheader>
+        }
+        sx={{
+          padding: 2,
+        }}
+        dense
+      >
+        {headings.map((heading, index) => (
+          <RecursizeRenderHeadings key={index} heading={heading} setMobileOpen={setMobileOpen} />
+        ))}
+      </List>
+    </>
   );
 }
 
 export const drawerWidth = 240;
 
-export default function NavigationDrawer({ headings, mobileOpen, setMobileOpen, isClosing, setIsClosing }: NavigationDrawerProps) {
+export default function NavigationDrawer({ githubLink, headings, mobileOpen, setMobileOpen, setIsClosing }: NavigationDrawerProps) {
   
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -71,7 +79,7 @@ export default function NavigationDrawer({ headings, mobileOpen, setMobileOpen, 
     setIsClosing(false);
   };  
 
-  const drawer = <NavigationDrawerContents headings={headings} setMobileOpen={setMobileOpen} />;
+  const drawer = <NavigationDrawerContents githubLink={githubLink} headings={headings} setMobileOpen={setMobileOpen} />;
 
   return (
     <Box

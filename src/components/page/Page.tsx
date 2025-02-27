@@ -6,7 +6,7 @@ import { NavBar } from "../common/Navbar";
 import './Page.css';
 
 
-export default function Page({ headings, children }: { headings?: HeadingLink[], children: ReactNode }) {
+export default function Page({ githubLink, headings, children }: { githubLink?: string, headings?: HeadingLink[], children: ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -35,7 +35,7 @@ export default function Page({ headings, children }: { headings?: HeadingLink[],
     <Box>
       <NavBar drawer={true} pages={pages} languages={languages} handleDrawerToggle={handleDrawerToggle} />
       <Box display='flex'>
-        <NavigationDrawer headings={headings} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} isClosing={isClosing} setIsClosing={setIsClosing}/>
+        <NavigationDrawer githubLink={githubLink!} headings={headings} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} isClosing={isClosing} setIsClosing={setIsClosing}/>
         <Box 
           component="main"
           sx={{ flexGrow: 1, width: { xs: '100vw', sm: `calc(100% - ${drawerWidth}px)` } }}

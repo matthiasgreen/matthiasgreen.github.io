@@ -1,5 +1,5 @@
 import { Chessboard } from "react-chessboard";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import { is_move_legal, needs_promotion, make_move, respond } from "chess-engine";
 import { Alert, Box, Container, styled, Typography } from "@mui/material";
@@ -81,7 +81,7 @@ function PlayChess() {
 
   function makeMove(move: string) {
     const newState = make_move({ fen: fen, pgn: "" }, move);
-    console.log(newState);
+    setFen(newState.fen);
     setFen(respond({ fen: newState.fen, pgn: "" }).fen);
   }
 
@@ -263,9 +263,9 @@ const headings: HeadingLink[] = [
 
 
 export default function ChessProject() {
-  const { t } = useTranslation("projects", { keyPrefix: "chess.tabs" });
+  // const { t } = useTranslation("projects", { keyPrefix: "chess.tabs" });
   return (
-    <Page headings={headings}>
+    <Page headings={headings} githubLink="matthiasgreen/chess-engine">
       <Presentation />
       <PlayChess />
       <DeepDive />

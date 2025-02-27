@@ -1,10 +1,10 @@
 import ProjectCards from "../components/page/ProjectCards";
 import { useTranslation } from "react-i18next";
-import { Alert, AlertTitle, Box, Button, Card, CardContent, CardMedia, Container, Link, Stack, Typography, useTheme } from "@mui/material";
+import { Alert, AlertTitle, Box, Button, Card, CardContent, CardMedia, Link, Typography, useTheme } from "@mui/material";
 import Page from "../components/page/Page";
 import photo from "/IMG_2430.webp";
 import cv from "/CV Matthias Green.pdf";
-import { Article, Description, DocumentScanner } from "@mui/icons-material";
+import { Article } from "@mui/icons-material";
 
 
 function PresentationCard() {
