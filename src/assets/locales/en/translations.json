@@ -1,19 +1,24 @@
 {
     "homePage": {
-        "title": "Welcome to my website"
+        "title": "Matthias Green",
+        "subtitle": "A software engineering student from Toulouse, France.",
+        "wip": "Work in progress",
+        "wipDetails": "This website is still under construction. Some features may not work as expected.",
+        "projectsHeading": "Check out my projects!",
+        "aboutMeHeading": "About me",
+        "aboutMe1": "Currently in my 4th year of software engineering studies, I'm passionate about most aspects of computer science.",
+        "aboutMe2": ""
     },
     "aboutPage": {
         "title": "About me",
-        "subtitle": "This is the about page"
+        "subtitle": "A software engineering student from Toulouse, France.",
+        "part1": "Bblablablablablablablab",
+        "cv": "Download my CV: (French)"
     },
     "projects": {
         "chess": {
-            "tabs": {
-                "presentation": "Project presentation",
-                "play": "Play my engine",
-                "deepDive": "Deep dive"
-            },
             "presentation": {
+                "heading": "Project presentation",
                 "introduction": {
                     "heading": "Introduction",
                     "part1": "As an avid programmer and semi-regular chess player, I've always been fascinated by chess engines. ",
@@ -31,7 +36,7 @@
                     "part5": "This evaluation is typically expressed in units of pawns (e.g. An evaluation of +2 represents an advantage for white equivalent to having 2 extra pawns)"
                 },
                 "steps": {
-                    "heading": "Step by step solution",
+                    "heading": "Solution elements",
                     "part1": "A chess engine can be broken down into a few components. For more information about these steps, take a look at the deep dive tab. ",
                     "bullet": {
                         "part1": "<strong>Game state representation:</strong> This data structure must store all necessary information about the game which includes:",
@@ -129,6 +134,14 @@
                         "part4": "(Graphs)"
                     }
                 }
+            }
+        },
+        "fourier": {
+            "heading": "Fourier Doodle",
+            "presentation": {
+                "heading": "Presentation",
+                "part1": "Inspired by this <Link>3Blue1Brown video</Link>, I wanted to recreate the satisfying animation showing the fourier series approximating a 2D curve. ",
+                "part2": "After succeeding in creating this for a SVG path, I also added the option to draw on the canvas. "
             }
         }
     }

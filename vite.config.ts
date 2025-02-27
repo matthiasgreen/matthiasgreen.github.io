@@ -7,4 +7,7 @@ import topLevelAwait from 'vite-plugin-top-level-await'
 export default defineConfig({
   base: "/",
   plugins: [react(), wasm(), topLevelAwait()],
+  server: {
+    host: true
+  }
 })

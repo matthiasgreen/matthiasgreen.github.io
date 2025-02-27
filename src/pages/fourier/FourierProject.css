@@ -1,13 +1,4 @@
-.canvas-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    height: 400px;
-    width: 100%;
-}
-
-.canvas-container canvas {
-    background-color: black;
+#fourier-canvas {
     height: 100%;
+    width: 100%;
 }

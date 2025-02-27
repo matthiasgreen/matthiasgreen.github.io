@@ -1,43 +1,111 @@
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
-import { NavElement } from './NavElement';
-import { animated, useSpring } from 'react-spring';
-import './Navbar.css';
-import burgerLogo from '../../assets/burger-menu.svg';
+import { Avatar, IconButton, Link, Stack, styled } from '@mui/material';
+import { GitHub, Language, Menu as MenuIcon } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
+import { drawerWidth } from '../page/NavigationDrawer';
+import { GithubLink, LinkedInLink } from './LogoLinks';
 
-export default function Navbar( {navElements}: {navElements: NavElement[]} ) {
-    // Small burger in circle in top left corner
-    // Hover expands downwards into a small menu with links
-    const [expanded, setExpanded] = useState(false);
-    const listAnimation = useSpring({
-        transform: expanded ? 'scaleY(1) translateY(0%)' : 'scaleY(0) translateY(-100%)',
-        opacity: expanded ? 1 : 0,
-        config: { tension: 200, friction: 20 }
-    });
-    const burgerAnimation = useSpring({
-        // Shift off screen to the left
-        transform: expanded ? 'translateX(-300%)' : 'translateX(0%)',
-        // opacity: expanded ? 0 : 1,
-        config: { tension: 200, friction: 20 }
-    });
 
-    return (
-        <nav className="navbar">
-            <div
-                className='burger'
-                onMouseEnter={() => setExpanded(true)}
-                onMouseLeave={() => setExpanded(false)}
-            >
-                <animated.div style={burgerAnimation} className='burger-icon'>
-                    <img src={burgerLogo} alt="Burger menu"/>
-                </animated.div>
-                <animated.ul style={listAnimation} className='nav-list'>
-                    {navElements.map((element, index) => (
-                        <li key={index} className="nav-item">
-                            <a href={element.link}>{element.name}</a>
-                        </li>
-                    ))}
-                </animated.ul>
-            </div>
-        </nav>
-    )
+
+export interface Page {
+  name: string;
+  link: string;
+  subpages?: Page[];
+}
+
+export interface NavBarProps {
+  pages: Page[];
+  languages: {
+    name: string;
+    code: string;
+  }[];
+  handleDrawerToggle: () => void;
+  drawer: boolean;
+}
+
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
+
+export function NavBar({ drawer, pages, languages, handleDrawerToggle }: NavBarProps) {
+  const {t, i18n} = useTranslation();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+
+  const handleOpenLanguageMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  }
+
+  const handleCloseLanguageMenu = () => {
+    setAnchorEl(null);
+  }
+
+  return (
+    <>
+      <AppBar
+        position='fixed'
+        sx={
+          drawer ? (
+            { width: { sm: `calc(100% - ${drawerWidth}px)` }, ml: { sm: `${drawerWidth}px` } }
+          ) : (
+            { width: { xs: '100%', sm: '80%', md: '60%'}, left: { xs: 0, sm: "10%", md: '20%' } }
+          )
+        }
+      >
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Box>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{ display: drawer ? { sm: 'none' } : 'none' }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <IconButton
+                color="inherit"
+                size='large'
+                onClick={handleOpenLanguageMenu}
+              >
+                <Language />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleCloseLanguageMenu}
+              >
+                {languages.map((language, index) => (
+                  <MenuItem key={index} onClick={() => {
+                    i18n.changeLanguage(language.code);
+                    handleCloseLanguageMenu();
+                  }}>
+                    <Typography sx={{ textAlign: 'center' }}>{language.name}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+
+              {pages.map((page, index) => (
+                <Button key={index} href={page.link} color='inherit'> 
+                  {page.name}
+                </Button>
+              ))}
+            </Box>
+            <Stack direction="row" spacing={1} sx={{ ml: 'auto' }}>
+              <GithubLink page="matthiasgreen" color="inherit"/>
+              <LinkedInLink page="matthias-green"/>
+            </Stack>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <Offset />
+    </>
+  );
 }

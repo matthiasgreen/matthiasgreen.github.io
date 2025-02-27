@@ -1,8 +1,0 @@
-.chessboard-container {
-    width: 60%;
-    max-width: 70vh;
-    /* center contents horizontally */
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-}

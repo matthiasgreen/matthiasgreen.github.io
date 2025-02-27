@@ -1,6 +1,9 @@
 {
     "homePage": {
-        "title": "Bienvenue sur mon site web"
+        "title": "Matthias Green",
+        "subtitle": "",
+        "wip": "Travaux en cours",
+        "wipDetails": "Ce site est encore en developpement, certaines fonctionnalités risquent de ne pas fonctionner correctement."
     },
     "aboutPage": {
         "title": "A propos de moi",

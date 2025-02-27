@@ -18,6 +18,6 @@ i18n
     },
     react: {
       transSupportBasicHtmlNodes: true,
-      transKeepBasicHtmlNodesFor: ["b", "strong", "i", "em", "u", "s", "li", "ul"]
+      transKeepBasicHtmlNodesFor: ["b", "strong", "0i", "em", "u", "s", "li", "ul"],
     }
   });
