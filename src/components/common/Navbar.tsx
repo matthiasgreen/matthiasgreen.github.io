@@ -34,7 +34,7 @@ export interface NavBarProps {
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 export function NavBar({ drawer, pages, languages, handleDrawerToggle }: NavBarProps) {
-  const {i18n} = useTranslation();
+  const { i18n } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
 
@@ -54,7 +54,7 @@ export function NavBar({ drawer, pages, languages, handleDrawerToggle }: NavBarP
           drawer ? (
             { width: { sm: `calc(100% - ${drawerWidth}px)` }, ml: { sm: `${drawerWidth}px` } }
           ) : (
-            { width: { xs: '100%', sm: '80%', md: '60%'}, left: { xs: 0, sm: "10%", md: '20%' } }
+            { width: { xs: '100%', sm: '80%', md: '60%' }, left: { xs: 0, sm: "10%", md: '20%' } }
           )
         }
       >
@@ -93,14 +93,14 @@ export function NavBar({ drawer, pages, languages, handleDrawerToggle }: NavBarP
               </Menu>
 
               {pages.map((page, index) => (
-                <Button key={index} href={page.link} color='inherit'> 
+                <Button key={index} href={page.link} color='inherit'>
                   {page.name}
                 </Button>
               ))}
             </Box>
             <Stack direction="row" spacing={1} sx={{ ml: 'auto' }}>
-              <GithubLink page="matthiasgreen" color="inherit"/>
-              <LinkedInLink page="matthias-green"/>
+              <GithubLink page="matthiasgreen" color="inherit" />
+              <LinkedInLink page="matthias-green" />
             </Stack>
           </Toolbar>
         </Container>

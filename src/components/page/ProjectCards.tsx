@@ -7,6 +7,13 @@ import { Description } from "@mui/icons-material";
 
 const projects: ProjectCard[] = [
   {
+    title: "LAAS Internship",
+    description: "",
+    image: "",
+    link: "/projects/aries",
+    githubUrl: "plaans/aries"
+  },
+  {
     title: "Chess engine",
     description: "A chess engine written from scratch in Rust.",
     image: chessIcon,
@@ -42,7 +49,7 @@ export default function ProjectCards() {
   return (
     <Box sx={{ marginTop: 5, flexDirection: 'row', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
       {projects.map((project, index) => (
-        <Card variant="outlined" key={index} sx={{maxWidth: '200px'}}>
+        <Card variant="outlined" key={index} sx={{ maxWidth: '200px' }}>
           <CardActionArea
             href={project.link}
           >
@@ -50,7 +57,7 @@ export default function ProjectCards() {
               component="img"
               image={project.image}
               alt={project.title}
-              sx={{padding: '1rem', aspectRatio: '1/1'}}
+              sx={{ padding: '1rem', aspectRatio: '1/1' }}
             />
             <CardContent>
               <Typography variant="h5">{project.title}</Typography>
@@ -59,7 +66,7 @@ export default function ProjectCards() {
           </CardActionArea>
           <CardActions>
             <Stack spacing={1}>
-              <Button variant="outlined" startIcon={<Description/>} href={project.link}> 
+              <Button variant="outlined" startIcon={<Description />} href={project.link}>
                 View blog post
               </Button>
               <GithubLink page={project.githubUrl} text="View on Github" />

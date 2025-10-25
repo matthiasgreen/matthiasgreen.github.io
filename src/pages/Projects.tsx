@@ -10,7 +10,7 @@ export default function Projects() {
       <Typography variant="h2">
         Projects
       </Typography>
-      <ProjectCards/>
+      <ProjectCards />
     </Page>
   )
 }

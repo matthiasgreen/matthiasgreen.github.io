@@ -40,11 +40,11 @@ function RecursizeRenderHeadings({ heading, setMobileOpen }: { heading: HeadingL
   );
 }
 
-function NavigationDrawerContents({ githubLink, headings, setMobileOpen }: {githubLink: string, headings: HeadingLink[], setMobileOpen: (open: boolean) => void}) {
+function NavigationDrawerContents({ githubLink, headings, setMobileOpen }: { githubLink: string, headings: HeadingLink[], setMobileOpen: (open: boolean) => void }) {
   return (
     <>
       <Box display="flex" justifyContent="center" alignItems="center" padding={2}>
-        <GithubLink text="View on Github" page={githubLink}/>
+        <GithubLink text="View on Github" page={githubLink} />
       </Box>
       <Divider />
       <List
@@ -69,7 +69,7 @@ function NavigationDrawerContents({ githubLink, headings, setMobileOpen }: {gith
 export const drawerWidth = 240;
 
 export default function NavigationDrawer({ githubLink, headings, mobileOpen, setMobileOpen, setIsClosing }: NavigationDrawerProps) {
-  
+
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
@@ -77,7 +77,7 @@ export default function NavigationDrawer({ githubLink, headings, mobileOpen, set
 
   const handleDrawerTransitionEnd = () => {
     setIsClosing(false);
-  };  
+  };
 
   const drawer = <NavigationDrawerContents githubLink={githubLink} headings={headings} setMobileOpen={setMobileOpen} />;
 

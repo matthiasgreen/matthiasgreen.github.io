@@ -42,9 +42,9 @@ export default function MyCodeBlock({ children, language }: { children: string, 
       }}
     >
       {/* Gradient overlay */}
-      {open ? <></> : <Box sx={{ width: '100%', height: '100%', position: 'absolute', background: gradient, zIndex: 2}}/>}
+      {open ? <></> : <Box sx={{ width: '100%', height: '100%', position: 'absolute', background: gradient, zIndex: 2 }} />}
 
-      <IconButton size='large' sx={{position: 'absolute', zIndex: 3, top: 5, right: 5}} onClick={() => setOpen(!open)}>
+      <IconButton size='large' sx={{ position: 'absolute', zIndex: 3, top: 5, right: 5 }} onClick={() => setOpen(!open)}>
         {open ? <KeyboardArrowDown /> : <KeyboardArrowLeft />}
       </IconButton>
 

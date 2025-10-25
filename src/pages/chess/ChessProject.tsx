@@ -38,7 +38,7 @@ function Presentation() {
         {t("problem.part4")}
         {t("problem.part5")}
       </Typography>
-  
+
       {/* <H3 variant="h3" id="steps">{t("steps.heading")}</H3>
       <Typography variant='body1'>{t("steps.part1")}</Typography>
       <Typography variant='body1' component='div'>
@@ -147,48 +147,48 @@ function DeepDive() {
       <Typography variant='body1'>{t("introduction.part1")}</Typography>
       <H3 variant="h3" id="board-representation">{t("boardRepresentation.heading")}</H3>
       <Typography variant='body1'>
-          {t("boardRepresentation.part1")}
-          {t("boardRepresentation.part2")}
-          {t("boardRepresentation.part3")}
-          {t("boardRepresentation.part4")}
-          {t("boardRepresentation.part5")}
-          {t("boardRepresentation.part6")}
+        {t("boardRepresentation.part1")}
+        {t("boardRepresentation.part2")}
+        {t("boardRepresentation.part3")}
+        {t("boardRepresentation.part4")}
+        {t("boardRepresentation.part5")}
+        {t("boardRepresentation.part6")}
       </Typography>
       <MyCodeBlock language="rust">
         {boardRepSnippet}
       </MyCodeBlock>
       <H3 variant="h3" id="game-state">{t("gameState.heading")}</H3>
       <Typography variant='body1'>
-          {t("gameState.part1")}
-          {t("gameState.part2")}
-          {t("gameState.part3")}
+        {t("gameState.part1")}
+        {t("gameState.part2")}
+        {t("gameState.part3")}
       </Typography>
       <MyCodeBlock language="rust">
         {gameStateSnippet}
       </MyCodeBlock>
       <H3 variant="h3" id="move-representation">{t("moveRepresentation.heading")}</H3>
       <Typography variant="body1">
-          {t("moveRepresentation.part1")}
-          {t("moveRepresentation.part2")}
+        {t("moveRepresentation.part1")}
+        {t("moveRepresentation.part2")}
       </Typography>
       <MyCodeBlock language="rust">
         {moveRepresentationSnippet}
       </MyCodeBlock>
       <H3 variant="h3" id="move-generation">{t("moveGeneration.heading")}</H3>
       <Typography variant="body1" component='div'>
-          {t("moveGeneration.part1")}
-          {t("moveGeneration.part2")}
-          {t("moveGeneration.part3")}
-          {t("moveGeneration.part4")}
-          {t("moveGeneration.part5.intro")}
-          <ul>
-            <li>{t("moveGeneration.part5.bullet1")}</li>
-            <li>{t("moveGeneration.part5.bullet2")}</li>
-            <li>{t("moveGeneration.part5.bullet3")}</li>
-            <li>{t("moveGeneration.part5.bullet4")}</li>
-            <li>{t("moveGeneration.part5.bullet5")}</li>
-            <li>{t("moveGeneration.part5.bullet6")}</li>
-          </ul>
+        {t("moveGeneration.part1")}
+        {t("moveGeneration.part2")}
+        {t("moveGeneration.part3")}
+        {t("moveGeneration.part4")}
+        {t("moveGeneration.part5.intro")}
+        <ul>
+          <li>{t("moveGeneration.part5.bullet1")}</li>
+          <li>{t("moveGeneration.part5.bullet2")}</li>
+          <li>{t("moveGeneration.part5.bullet3")}</li>
+          <li>{t("moveGeneration.part5.bullet4")}</li>
+          <li>{t("moveGeneration.part5.bullet5")}</li>
+          <li>{t("moveGeneration.part5.bullet6")}</li>
+        </ul>
       </Typography>
       <MyCodeBlock language="rust">
         {knightMoveGenSnippet}
@@ -242,23 +242,29 @@ function DeepDive() {
 }
 
 const headings: HeadingLink[] = [
-  { headingNumber: 1, headingText: "Presentation", link: "#presentation", subHeadings: [
-    { headingNumber: 2, headingText: "Introduction", link: "#introduction" },
-    { headingNumber: 2, headingText: "Problem", link: "#problem" },
-    // { headingNumber: 2, headingText: "Steps", link: "#steps" }
-  ]},
+  {
+    headingNumber: 1, headingText: "Presentation", link: "#presentation", subHeadings: [
+      { headingNumber: 2, headingText: "Introduction", link: "#introduction" },
+      { headingNumber: 2, headingText: "Problem", link: "#problem" },
+      // { headingNumber: 2, headingText: "Steps", link: "#steps" }
+    ]
+  },
   { headingNumber: 1, headingText: "Play Chess", link: "#play-chess" },
-  { headingNumber: 1, headingText: "Deep Dive", link: "#deep-dive-introduction", subHeadings: [
-    { headingNumber: 2, headingText: "Board Representation", link: "#board-representation" },
-    { headingNumber: 2, headingText: "Game State", link: "#game-state" },
-    { headingNumber: 2, headingText: "Move Representation", link: "#move-representation" },
-    { headingNumber: 2, headingText: "Move Generation", link: "#move-generation" },
-    { headingNumber: 2, headingText: "Make/Unmake", link: "#make-unmake" },
-    { headingNumber: 2, headingText: "Evaluation", link: "#evaluation" },
-    { headingNumber: 2, headingText: "Search", link: "#search", subHeadings: [
-      { headingNumber: 3, headingText: "Minimax", link: "#minimax" }
-    ]}
-  ]}
+  {
+    headingNumber: 1, headingText: "Deep Dive", link: "#deep-dive-introduction", subHeadings: [
+      { headingNumber: 2, headingText: "Board Representation", link: "#board-representation" },
+      { headingNumber: 2, headingText: "Game State", link: "#game-state" },
+      { headingNumber: 2, headingText: "Move Representation", link: "#move-representation" },
+      { headingNumber: 2, headingText: "Move Generation", link: "#move-generation" },
+      { headingNumber: 2, headingText: "Make/Unmake", link: "#make-unmake" },
+      { headingNumber: 2, headingText: "Evaluation", link: "#evaluation" },
+      {
+        headingNumber: 2, headingText: "Search", link: "#search", subHeadings: [
+          { headingNumber: 3, headingText: "Minimax", link: "#minimax" }
+        ]
+      }
+    ]
+  }
 ]
 
 

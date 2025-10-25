@@ -84,15 +84,15 @@ export default function Home() {
         <AlertTitle>{t("wip")}</AlertTitle>
         {t("wipDetails")}
       </Alert>
-      <PresentationCard/>
-      <DownloadCVButton/>
-      <Box sx={{ marginTop: 4}}>
+      <PresentationCard />
+      <DownloadCVButton />
+      <Box sx={{ marginTop: 4 }}>
         <Typography variant="h2" textAlign="center" id="projects">
           <Link color="inherit" underline="none" href="#projects">{t("projectsHeading")}</Link>
         </Typography>
-        <ProjectCards/>
+        <ProjectCards />
       </Box>
-      <Box sx={{ marginTop: '8rem'}}>
+      <Box sx={{ marginTop: '8rem' }}>
         <Typography variant="h2" textAlign="center" id="about">
           <Link color="inherit" underline="none" href="#about">{t("aboutMeHeading")}</Link>
         </Typography>

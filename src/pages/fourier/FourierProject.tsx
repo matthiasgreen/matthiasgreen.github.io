@@ -13,7 +13,7 @@ function Presentation() {
     <>
       <H2 id="presentation">{t('heading')}</H2>
       <Typography variant="body1">
-        <Trans t={t} i18nKey="part1" components={{Link: <Link to="https://www.youtube.com/watch?v=spUNpyF58BY"/>}}/>
+        <Trans t={t} i18nKey="part1" components={{ Link: <Link to="https://www.youtube.com/watch?v=spUNpyF58BY" /> }} />
         {t('part2')}
       </Typography>
     </>

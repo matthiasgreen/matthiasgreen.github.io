@@ -49,16 +49,16 @@ let theme = createTheme({
     dark: true
   },
   // typography: {
-    // h1: {
-    //   fontSize: '4rem',
-    //   fontWeight: 'bold',
-    //   lineHeight: 2
-    // },
-    // h2: {
-    //   fontSize: '2rem',
-    //   fontWeight: 'bold',
-    //   lineHeight: 2
-    // }
+  // h1: {
+  //   fontSize: '4rem',
+  //   fontWeight: 'bold',
+  //   lineHeight: 2
+  // },
+  // h2: {
+  //   fontSize: '2rem',
+  //   fontWeight: 'bold',
+  //   lineHeight: 2
+  // }
   // }
 });
 
@@ -85,7 +85,7 @@ export const languages = [
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <CssBaseline enableColorScheme  />
+      <CssBaseline enableColorScheme />
       <HashRouter>
         <Routes>
           {pages.map((page, index) => (
