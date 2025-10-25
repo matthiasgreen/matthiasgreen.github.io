@@ -79,7 +79,7 @@ export const pages = [
 
 export const languages = [
   { name: 'English', code: 'en' },
-  { name: 'French', code: 'fr' }
+  // { name: 'French', code: 'fr' }
 ]
 
 createRoot(document.getElementById('root')!).render(
