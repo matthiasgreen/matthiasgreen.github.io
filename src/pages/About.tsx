@@ -1,10 +1,10 @@
-import Page from "../components/page/Page";
+import { SimplePage } from "../components/page/Page";
 
 export default function About() {
   // const { t } = useTranslation("aboutPage");
   return (
-    <Page>
+    <SimplePage>
       TODO
-    </Page>
+    </SimplePage>
   );
 }

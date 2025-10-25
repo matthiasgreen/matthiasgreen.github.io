@@ -2,7 +2,7 @@ import { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { FourierAnimation } from "fourier-animation";
 import { Alert, Box, Slider, Stack, Typography } from "@mui/material";
 import { Trans, useTranslation } from "react-i18next";
-import Page from "../../components/page/Page";
+import { DrawerPage } from "../../components/page/Page";
 import { HeadingLink } from "../../components/page/NavigationDrawer";
 import { Link } from "react-router";
 import { H1, H2 } from "../../components/page/Headings";
@@ -137,10 +137,10 @@ const headings: HeadingLink[] = [
 export default function FourierProject() {
   const { t } = useTranslation("projects", { keyPrefix: "fourier" });
   return (
-    <Page headings={headings} githubLink="matthiasgreen/fourier-animation">
+    <DrawerPage headings={headings} githubLink="matthiasgreen/fourier-animation">
       <H1>{t("heading")}</H1>
       <Presentation />
       <Demonstration />
-    </Page>
+    </DrawerPage>
   );
 }

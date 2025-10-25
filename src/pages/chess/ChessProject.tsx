@@ -6,7 +6,7 @@ import { Alert, Box, Container, styled, Typography } from "@mui/material";
 import MyCodeBlock from "../../components/page/MyCodeBlock";
 import { boardRepSnippet, gameStateSnippet, knightMoveGenSnippet, makeUnmakeSnippet, moveRepresentationSnippet } from "./snippets";
 import { HeadingLink } from "../../components/page/NavigationDrawer";
-import Page from "../../components/page/Page";
+import { DrawerPage } from "../../components/page/Page";
 
 const H2 = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(4)
@@ -271,10 +271,10 @@ const headings: HeadingLink[] = [
 export default function ChessProject() {
   // const { t } = useTranslation("projects", { keyPrefix: "chess.tabs" });
   return (
-    <Page headings={headings} githubLink="matthiasgreen/chess-engine">
+    <DrawerPage headings={headings} githubLink="matthiasgreen/chess-engine">
       <Presentation />
       <PlayChess />
       <DeepDive />
-    </Page>
+    </DrawerPage>
   )
 }

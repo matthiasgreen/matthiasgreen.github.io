@@ -1,16 +1,14 @@
 import { Typography } from "@mui/material";
 import ProjectCards from "../components/page/ProjectCards";
-import Page from "../components/page/Page";
-
-
+import { SimplePage } from "../components/page/Page";
 
 export default function Projects() {
   return (
-    <Page>
+    <SimplePage>
       <Typography variant="h2">
         Projects
       </Typography>
       <ProjectCards />
-    </Page>
+    </SimplePage>
   )
 }
