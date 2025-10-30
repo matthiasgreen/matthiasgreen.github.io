@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Alert, AlertTitle, Box, Button, Link, Typography } from "@mui/material";
 import { SimplePage } from "../components/page/Page";
 import photo from "/IMG_2430.webp";
-import cv from "/CV Matthias Green.pdf";
+import resume from "/Matthias-Green-Resume.pdf";
 import { Article } from "@mui/icons-material";
 import ImageCard from "../components/page/ImageCard";
 
@@ -14,9 +14,9 @@ function DownloadCVButton() {
         size="large"
         variant="contained"
         startIcon={<Article />}
-        onClick={() => window.open(cv)}
+        onClick={() => window.open(resume)}
       >
-        Download my CV
+        Download my resume
       </Button>
     </Box>
   )

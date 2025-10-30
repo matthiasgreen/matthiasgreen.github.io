@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "wget -nv https://github.com/matthiasgreen/resume/releases/latest/download/Matthias-Green-Resume.pdf -O public/Matthias-Green-Resume.pdf",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -16,7 +17,7 @@
     "@foes/react-i18n-routing": "^0.8.0",
     "@mui/icons-material": "^6.4.4",
     "@mui/material": "^6.4.2",
-    "chess-engine": "https://github.com/matthiasgreen/chess-engine/releases/latest/download/chess-engine-0.1.0.tgz",
+    "chess-engine": "https://github.com/matthiasgreen/chess-engine/releases/latest/download/chess_wasm-0.1.0.tgz",
     "fourier-animation": "github:matthiasgreen/fourier-animation",
     "i18next": "^24.2.0",
     "i18next-browser-languagedetector": "^8.0.2",
